@@ -11,6 +11,7 @@
 
 # misc
 credentials.js
+src/img
 .DS_Store
 .env.local
 .env.development.local

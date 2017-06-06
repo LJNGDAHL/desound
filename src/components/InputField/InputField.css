@@ -1,0 +1,9 @@
+.InputField {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid var(--white);
+  color: var(--white);
+  font-family: inherit;
+  font-size: 2rem;
+  outline: none;
+}

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { API_key } from './credentials';
 import './App.css';
-import Button from './components/Button/Button';
-import InputField from './components/InputField/InputField';
+import Search from './components/Search/Search';
 import Header from './components/Header/Header';
 
 class App extends Component {
@@ -13,7 +12,7 @@ class App extends Component {
       baseURL: 'http://ws.audioscrobbler.com/2.0/?format=json',
       country: '',
       genre: '',
-      limit: 30,
+      limit: 10,
       method: 'artist.getsimilar', // for testing purposes
       response: {} // Used for storing response from Last.fm
     };
@@ -49,11 +48,16 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <InputField name="artist" handleChange={ this.handleChange } value={ this.state.artist } />
-        <Button handleClick={ this.fetchResponse }>Get artist</Button>
-        <h2>Result</h2>
-        <p>You searched on {userSearch}.</p>
-        {similarartists}
+        <main> { /* TODO: Main should be a component. */ }
+          <Search
+            handleChange={ this.handleChange }
+            value={ this.state.artist }
+            fetchResponse={ this.fetchResponse }
+          />
+          <h2>Result</h2>
+          <p>You searched on {userSearch}.</p>
+          {similarartists}
+        </main>
       </div>
     );
   }
