@@ -1,0 +1,20 @@
+button {
+  background: none;
+  border: 2px solid purple;
+  color: purple;
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em;
+  padding: 1em 2em 0.8em;
+  transition: 300ms;
+  text-transform: uppercase;
+}
+
+button:hover,
+button:focus {
+  border: 2px solid purple;
+  box-shadow: inset 12em 0 0 0 purple;
+  color: #fff;
+  cursor: pointer;
+  outline: none;
+}
