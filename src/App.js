@@ -1,17 +1,26 @@
 import React, { Component } from 'react';
 import { API_key } from './credentials';
 import './App.css';
+import Button from './components/Button/Button';
+import InputField from './components/InputField/InputField';
+import Header from './components/Header/Header';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      baseURL: 'http://ws.audioscrobbler.com/2.0/?format=json',
-      method: 'artist.getsimilar', // for testing purposes
-      limit: 30,
       artist: 'mogwai', // 'mogwai' for testing purposes
+      baseURL: 'http://ws.audioscrobbler.com/2.0/?format=json',
+      country: '',
+      genre: '',
+      limit: 30,
+      method: 'artist.getsimilar', // for testing purposes
       response: {} // Used for storing response from Last.fm
     };
+  }
+
+  handleChange = (e) => {
+    this.setState({ [e.target.name] : e.target.value });
   }
 
   fetchResponse = () => {
@@ -39,8 +48,9 @@ class App extends Component {
 
     return (
       <div className="App">
-        <h1>Hello World!</h1>
-        <button onClick={this.fetchResponse}>Get artist</button>
+        <Header />
+        <InputField name="artist" handleChange={ this.handleChange } value={ this.state.artist } />
+        <Button handleClick={ this.fetchResponse }>Get artist</Button>
         <h2>Result</h2>
         <p>You searched on {userSearch}.</p>
         {similarartists}
