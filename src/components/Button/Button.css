@@ -1,12 +1,14 @@
 button {
+  display: block; /* For testing purposes */
+  margin: 2rem auto; /* For testing purposes */
   background: none;
-  border: 2px solid #fff;
-  color: #fff;
+  border: 2px solid var(--white);
+  color: var(--white);
   cursor: pointer;
   font: inherit;
-  font-weight: 400;
+  font-weight: 600;
+  font-smoothing: antialiased;
   line-height: 1;
-  margin: 0.5em;
   border-radius: 20px;
   padding: 0.7rem 3rem 0.5rem;
   transition: 300ms;
@@ -15,8 +17,8 @@ button {
 
 button:hover {
   outline: none;
-  background-color: #fff;
-  color: #000;
+  background-color: var(--white);
+  color: var(--pink);
 }
 
 button:focus {
