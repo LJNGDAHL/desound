@@ -1,5 +1,6 @@
 import React from 'react';
 import './Cards.css';
+import Link from '../Link/Link';
 
 const Cards = ({ artists, showCards }) => {
   if (!showCards) {
@@ -7,6 +8,8 @@ const Cards = ({ artists, showCards }) => {
   }
 
   const artistCards = artists.artist.map((artist , index) => {
+    const youtubeLink = `https://www.youtube.com/results?search_query=${artist.name}`;
+
     return (
       <div className="Cards__card" key={ index }>
         <div className="Cards__img-container">
@@ -15,6 +18,7 @@ const Cards = ({ artists, showCards }) => {
         <div className="Cards__content">
           <p>{ artist.name }</p>
           <p className="match">{ Math.round(artist.match * 100) } % Match</p>
+          <Link url={youtubeLink}>Explore on Youtube</Link>
         </div>
       </div>
     );
