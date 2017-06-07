@@ -1,5 +1,5 @@
-h1 {
-  font-weight: 700;
-  font-size: 3rem;
-  margin-top: 0;
+.App {
+  box-sizing: border-box;
+  padding: 1rem 2rem 10rem;
+  width: 100vw;
 }
