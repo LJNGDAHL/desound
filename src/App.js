@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Cards from './components/Cards/Cards';
+import Card from './components/Card/Card';
 import { API_key } from './credentials';
 import './App.css';
 import Search from './components/Search/Search';
@@ -39,6 +39,13 @@ class App extends Component {
 
   render() {
     const resultHeadline = this.state.fetchCompleted ? <h2>Showing { this.state.limit } results</h2> : '';
+    let cards;
+
+    if (this.state.fetchCompleted) {
+      cards = this.state.response.similarartists.artist.map((artist, index) => {
+        return (<Card key={ index } artist={ artist } />);
+      });
+    }
 
     return (
       <div className="App">
@@ -50,10 +57,9 @@ class App extends Component {
             fetchResponse={ this.fetchResponse }
           />
           { resultHeadline }
-          <Cards
-            showCards={ this.state.fetchCompleted }
-            artists={ this.state.response.similarartists }
-            />
+          <div className="Cards">
+            { cards ? cards : '' }
+            </div>
         </main>
       </div>
     );
