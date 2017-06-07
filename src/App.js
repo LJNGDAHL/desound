@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Cards from './components/Cards/Cards';
 import { API_key } from './credentials';
 import './App.css';
 import Search from './components/Search/Search';
@@ -12,7 +13,8 @@ class App extends Component {
       baseURL: 'http://ws.audioscrobbler.com/2.0/?format=json',
       country: '',
       genre: '',
-      limit: 10,
+      limit: 5,
+      fetchCompleted: false,
       method: 'artist.getsimilar', // for testing purposes
       response: {} // Used for storing response from Last.fm
     };
@@ -26,24 +28,17 @@ class App extends Component {
     const { artist, method, limit, baseURL } = this.state;
     const query = `${baseURL}&method=${method}&artist=${artist}&limit=${limit}&api_key=${API_key}`;
 
-    fetch(query, { headers: { accept: 'application/json' }} )
-      .then(body => body.json())
+    fetch(query)
+      .then(response => response.json())
       .then((response) => {
-        this.setState({ response });
+        this.setState({ response, fetchCompleted: true });
+
       })
       .catch(err => console.log(err)); // TODO: Give user feedback.
   }
 
   render() {
-    let userSearch = 'nothing';
-    let similarartists;
-
-    if (this.state.response.similarartists) {
-      userSearch = this.state.response.similarartists['@attr'].artist;
-      similarartists = this.state.response.similarartists.artist.map((artist , index) => {
-        return <p key={ index }> { artist.name } </p>;
-      });
-    }
+    const resultHeadline = this.state.fetchCompleted ? <h2>Showing { this.state.limit } results</h2> : '';
 
     return (
       <div className="App">
@@ -54,9 +49,11 @@ class App extends Component {
             value={ this.state.artist }
             fetchResponse={ this.fetchResponse }
           />
-          <h2>Result</h2>
-          <p>You searched on {userSearch}.</p>
-          {similarartists}
+          { resultHeadline }
+          <Cards
+            showCards={ this.state.fetchCompleted }
+            artists={ this.state.response.similarartists }
+            />
         </main>
       </div>
     );
