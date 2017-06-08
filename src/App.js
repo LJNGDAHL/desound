@@ -3,16 +3,15 @@ import './App.css';
 import Card from './components/Card/Card';
 import { API_key } from './credentials';
 import Search from './components/Search/Search';
-import Range from './components/Range/Range';
 import Header from './components/Header/Header';
 import Loader from './components/Loader/Loader';
-import Select from './components/Select/Select';
+import ControlSection from './components/ControlSection/ControlSection';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      artist: '', // 'mogwai' for testing purposes
+      artist: 'Mogwai', // 'mogwai' for testing purposes
       baseURL: 'http://ws.audioscrobbler.com/2.0/?format=json',
       country: '',
       genre: '',
@@ -28,7 +27,6 @@ class App extends Component {
   updateState = (e) => {
     this.setState({ [e.target.name] : e.target.value });
   }
-
 
   fetchResponse = () => {
     const { artist, method, limit, baseURL } = this.state;
@@ -55,7 +53,6 @@ class App extends Component {
   }
 
   render() {
-    const resultHeadline = this.state.fetchCompleted ? <h2>Showing <span className="number">{ this.state.limit }</span> results</h2> : '';
     let cards;
 
     if (this.state.fetchCompleted) {
@@ -66,19 +63,8 @@ class App extends Component {
 
     const loader = (this.state.fetchPending) ? <Loader /> :
       <div className="fade-in">
-        <div className="cards">
-          { cards }
-        </div>
-        <div className="search-options"> { /* This should be a component */ }
-          <div className="search-options__item">
-            { resultHeadline }
-            <Range name="limit" value={ this.state.limit } handleInput={ this.updateState } handleChange={ this.fetchResponse } />
-          </div>
-          <div className="search-options__item">
-            <h2>Search Result Showing</h2>
-            <Select />
-          </div>
-        </div>
+        <div className="cards">{ cards }</div>
+        <ControlSection limit={ this.state.limit } handleInput={ this.updateState } handleChange={ this.fetchResponse } />
       </div>;
 
     const similarartists = (this.state.fetchInitialized) ?
