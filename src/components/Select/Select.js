@@ -1,7 +1,9 @@
 import React from 'react';
 import './Select.css';
 
-const Select = () => {
+// <Select method={ method } handleInput={ updateState } handleChange={ fetchData } />
+
+const Select = ({selected, handleInput, handleChange}) => {
   return (
     <div className="select">
       <select className="slct" name="slct">

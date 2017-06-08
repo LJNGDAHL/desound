@@ -15,9 +15,12 @@
   text-transform: uppercase;
 }
 
-.button:hover,
-.button:focus {
+.button:hover {
   background-color: var(--white);
   color: var(--pink);
+  outline: none;
+}
+
+.button:focus {
   outline: none;
 }

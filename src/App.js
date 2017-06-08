@@ -24,11 +24,19 @@ class App extends Component {
     };
   }
 
+  /**
+   * Takes the event and update state property that correlate with target name.
+   * @param  {Object} e The event.
+   */
   updateState = (e) => {
     this.setState({ [e.target.name] : e.target.value });
   }
 
-  fetchResponse = () => {
+  /**
+   * Retrieves data from
+   * @return {[type]} [description]
+   */
+  fetchData = () => {
     const { artist, method, limit, baseURL } = this.state;
     const query = `${baseURL}&method=artist.${method}&artist=${artist}&limit=${limit}&api_key=${API_key}`;
 
@@ -64,7 +72,7 @@ class App extends Component {
     const loader = (this.state.fetchPending) ? <Loader /> :
       <div className="fade-in">
         <div className="cards">{ cards }</div>
-        <ControlSection limit={ this.state.limit } handleInput={ this.updateState } handleChange={ this.fetchResponse } />
+        <ControlSection method={ this.state.method } limit={ this.state.limit } updateState={ this.updateState } fetchData={ this.fetchData } />
       </div>;
 
     const similarartists = (this.state.fetchInitialized) ?
@@ -78,7 +86,7 @@ class App extends Component {
       <div className="app">
         <Header />
         <main className="front">
-          <Search handleChange={ this.updateState } value={ this.state.artist } fetchResponse={ this.fetchResponse } />
+          <Search handleChange={ this.updateState } value={ this.state.artist } handleClick={ this.fetchData } />
         </main>
         { similarartists }
       </div>
