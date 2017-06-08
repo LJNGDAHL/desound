@@ -4,7 +4,7 @@
   border-bottom: 1px solid var(--white);
   color: var(--white);
   font-family: inherit;
-  font-size: 2rem;
+  font-size: 1.5rem;
   text-align: center;
   outline: none;
 }
@@ -12,4 +12,10 @@
 .input::placeholder {
   color: var(--white);
   opacity: 0.5;
+}
+
+@media screen and (min-width: 900px) {
+  .input {
+    font-size: 2rem;
+  }
 }

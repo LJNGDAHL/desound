@@ -25,6 +25,7 @@ body {
 }
 
 body {
+  box-sizing: border-box;
   background: url('./img/cover.jpg') center center no-repeat;
   background-attachment: fixed;
   background-size: cover;
