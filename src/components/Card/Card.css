@@ -57,7 +57,7 @@
 
 .card:hover .card__img {
   filter: blur(3px);
-  transform: scale(1.2);
+  transform: scale(1.02);
 }
 
 .card__content {

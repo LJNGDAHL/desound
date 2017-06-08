@@ -8,3 +8,8 @@
   text-align: center;
   outline: none;
 }
+
+.input::placeholder {
+  color: var(--white);
+  opacity: 0.5;
+}

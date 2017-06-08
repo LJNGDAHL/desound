@@ -11,7 +11,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      artist: 'mogwai', // 'mogwai' for testing purposes
+      artist: '', // 'mogwai' for testing purposes
       baseURL: 'http://ws.audioscrobbler.com/2.0/?format=json',
       country: '',
       genre: '',
