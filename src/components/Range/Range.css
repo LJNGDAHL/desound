@@ -1,8 +1,9 @@
 .range {
   border-radius: 0.25rem;
   height: 0.25rem;
+  margin: 1rem 0;
   outline: none;
-  width: 10rem;
+  width: 12rem;
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;

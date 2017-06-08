@@ -10,13 +10,8 @@
   height: 200px;
   width: 200px;
   padding: 1rem;
+  margin: 0.5rem;
   position: relative;
-}
-
-@media screen and (min-width: 600px) {
-  .card {
-    margin: 2rem 1rem 0;
-  }
 }
 
 .card__img-container {

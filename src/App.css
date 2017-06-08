@@ -6,10 +6,17 @@
 
 .cards {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   justify-content: center;
   margin: 1rem auto 0;
   max-width: 1000px;
+}
+
+@media screen and (min-width: 600px) {
+  .cards {
+    justify-content: space-between;
+  }
 }
 
 .fade-in {
@@ -26,5 +33,43 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+/* TODO: Move this to a component of it's own */
+.search-options {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  max-width: 1000px;
+  margin: 2rem auto 0;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+
+.search-options__item {
+  box-sizing: border-box;
+  border: 2px solid var(--white);
+  padding: 0.5rem 1rem 1rem;
+  min-height: 8rem;
+  min-width: 350px;
+  width: 50%;
+}
+
+.search-options__item:not(:last-of-type) {
+  border-right: none;
+}
+
+.search-options h2 {
+  font-size: 1.3rem;
+}
+
+@media screen and (min-width: 800px) {
+  .search-options {
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 0 2rem 0.5rem;
   }
 }

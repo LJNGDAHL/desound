@@ -6,6 +6,7 @@ import Search from './components/Search/Search';
 import Range from './components/Range/Range';
 import Header from './components/Header/Header';
 import Loader from './components/Loader/Loader';
+import Select from './components/Select/Select';
 
 class App extends Component {
   constructor() {
@@ -16,7 +17,7 @@ class App extends Component {
       country: '',
       genre: '',
       limit: 12,
-      method: 'artist.getsimilar', // for testing purposes
+      method: 'getsimilar', // for testing purposes
       response: {}, // Used for storing response from Last.fm
       fetchCompleted: false,
       fetchPending: false,
@@ -31,7 +32,7 @@ class App extends Component {
 
   fetchResponse = () => {
     const { artist, method, limit, baseURL } = this.state;
-    const query = `${baseURL}&method=${method}&artist=${artist}&limit=${limit}&api_key=${API_key}`;
+    const query = `${baseURL}&method=artist.${method}&artist=${artist}&limit=${limit}&api_key=${API_key}`;
 
     this.setState({ fetchInitialized: true, fetchPending: true });
 
@@ -44,13 +45,17 @@ class App extends Component {
           setTimeout(() => {
             this.setState({ fetchPending: false });
           }, 1500);
+        } else {
+          setTimeout(() => {
+            this.setState({ fetchPending: false, fetchInitialized: false });
+          }, 1500);
         }
       })
       .catch(err => console.log(err)); // TODO: Give user feedback.
   }
 
   render() {
-    const resultHeadline = this.state.fetchCompleted ? <h2>Showing { this.state.limit } results</h2> : '';
+    const resultHeadline = this.state.fetchCompleted ? <h2>Showing <span className="number">{ this.state.limit }</span> results</h2> : '';
     let cards;
 
     if (this.state.fetchCompleted) {
@@ -61,10 +66,18 @@ class App extends Component {
 
     const loader = (this.state.fetchPending) ? <Loader /> :
       <div className="fade-in">
-        { resultHeadline }
-        <Range name="limit" value={ this.state.limit } handleInput={ this.updateState } handleChange={ this.fetchResponse } />
         <div className="cards">
           { cards }
+        </div>
+        <div className="search-options"> { /* This should be a component */ }
+          <div className="search-options__item">
+            { resultHeadline }
+            <Range name="limit" value={ this.state.limit } handleInput={ this.updateState } handleChange={ this.fetchResponse } />
+          </div>
+          <div className="search-options__item">
+            <h2>Search Result Showing</h2>
+            <Select />
+          </div>
         </div>
       </div>;
 
