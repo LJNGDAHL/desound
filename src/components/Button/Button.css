@@ -1,6 +1,6 @@
-button {
-  display: block; /* For testing purposes */
-  margin: 2rem auto; /* For testing purposes */
+.button {
+  display: block;
+  margin: 2rem auto;
   background: none;
   border: 2px solid var(--white);
   color: var(--white);
@@ -15,12 +15,9 @@ button {
   text-transform: uppercase;
 }
 
-button:hover {
-  outline: none;
+.button:hover,
+.button:focus {
   background-color: var(--white);
   color: var(--pink);
-}
-
-button:focus {
   outline: none;
 }

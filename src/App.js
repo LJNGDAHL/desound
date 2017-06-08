@@ -5,6 +5,7 @@ import { API_key } from './credentials';
 import Search from './components/Search/Search';
 import Range from './components/Range/Range';
 import Header from './components/Header/Header';
+import Loader from './components/Loader/Loader';
 
 class App extends Component {
   constructor() {
@@ -15,9 +16,11 @@ class App extends Component {
       country: '',
       genre: '',
       limit: 12,
-      fetchCompleted: false,
       method: 'artist.getsimilar', // for testing purposes
-      response: {} // Used for storing response from Last.fm
+      response: {}, // Used for storing response from Last.fm
+      fetchCompleted: false,
+      fetchPending: false,
+      fetchInitialized: false
     };
   }
 
@@ -25,15 +28,23 @@ class App extends Component {
     this.setState({ [e.target.name] : e.target.value });
   }
 
+
   fetchResponse = () => {
     const { artist, method, limit, baseURL } = this.state;
     const query = `${baseURL}&method=${method}&artist=${artist}&limit=${limit}&api_key=${API_key}`;
 
+    this.setState({ fetchInitialized: true, fetchPending: true });
+
     fetch(query)
       .then(response => response.json())
       .then((response) => {
-        this.setState({ response, fetchCompleted: true });
+        if (!response.error) {
+          this.setState({ response, fetchCompleted: true });
 
+          setTimeout(() => {
+            this.setState({ fetchPending: false });
+          }, 1500);
+        }
       })
       .catch(err => console.log(err)); // TODO: Give user feedback.
   }
@@ -48,17 +59,29 @@ class App extends Component {
       });
     }
 
+    const loader = (this.state.fetchPending) ? <Loader /> :
+      <div className="fade-in">
+        { resultHeadline }
+        <Range name="limit" value={ this.state.limit } handleInput={ this.updateState } handleChange={ this.fetchResponse } />
+        <div className="cards">
+          { cards }
+        </div>
+      </div>;
+
+    const similarartists = (this.state.fetchInitialized) ?
+      <main className="similar-artists">
+        { loader }
+      </main>
+      :
+      '';
+
     return (
-      <div className="App">
+      <div className="app">
         <Header />
-        <main> { /* TODO: Main should be a component. */ }
+        <main className="front">
           <Search handleChange={ this.updateState } value={ this.state.artist } fetchResponse={ this.fetchResponse } />
-          { resultHeadline }
-          <Range name="limit" value={ this.state.limit } handleInput={ this.updateState } handleChange={ this.fetchResponse } />
-          <div className="Cards">
-            { cards ? cards : '' }
-            </div>
         </main>
+        { similarartists }
       </div>
     );
   }

@@ -3,7 +3,7 @@ import './Link.css';
 
 const Link = ({ url, children }) => {
   return (
-    <a href={ url } className="Link" >{ children }</a>
+    <a href={ url } className="link" >{ children }</a>
   );
 };
 

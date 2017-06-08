@@ -1,5 +1,30 @@
-.App {
+.app {
   box-sizing: border-box;
   padding: 1rem 2rem 10rem;
   width: 100vw;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 1rem auto 0;
+  max-width: 1000px;
+}
+
+.fade-in {
+  opacity: 0;
+  animation-name: fadeIn;
+  animation-fill-mode: forwards;
+  animation-duration: 750ms;
+  animation-delay: 250ms;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

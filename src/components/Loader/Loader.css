@@ -1,0 +1,41 @@
+.loader {
+  height: 8rem;
+  margin: 4rem auto 0;
+}
+
+.loader > div {
+  background-color: var(--white);
+  display: inline-block;
+  height: 100%;
+  margin: 0.2rem;
+  width: 20px;
+  animation: stretchdelay 1.2s infinite ease-in-out;
+}
+
+.loader .loader__item-2 {
+  animation-delay: -1.1s;
+}
+
+.loader .loader__item-3 {
+  animation-delay: -1.0s;
+}
+
+.loader .loader__item-4 {
+  animation-delay: -0.9s;
+}
+
+.loader .loader__item-5 {
+  animation-delay: -0.8s;
+}
+
+@keyframes stretchdelay {
+  0%,
+  40%,
+  100% {
+    transform: scaleY(0.4);
+  }
+
+  20% {
+    transform: scaleY(1.0);
+  }
+}
