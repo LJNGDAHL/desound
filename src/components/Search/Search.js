@@ -6,7 +6,7 @@ import InputField from '../InputField/InputField';
 const Search = ({ handleChange, value, fetchResponse }) => {
   return (
     <div className="Search">
-      <InputField name="artist" handleChange={ handleChange } value={ value } />
+      <InputField type="text" name="artist" handleChange={ handleChange } value={ value } />
       <Button handleClick={ fetchResponse }>Explore band</Button>
     </div>
   );

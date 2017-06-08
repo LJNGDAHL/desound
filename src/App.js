@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import './App.css';
 import Card from './components/Card/Card';
 import { API_key } from './credentials';
-import './App.css';
 import Search from './components/Search/Search';
+import Range from './components/Range/Range';
 import Header from './components/Header/Header';
 
 class App extends Component {
@@ -13,14 +14,14 @@ class App extends Component {
       baseURL: 'http://ws.audioscrobbler.com/2.0/?format=json',
       country: '',
       genre: '',
-      limit: 5,
+      limit: 12,
       fetchCompleted: false,
       method: 'artist.getsimilar', // for testing purposes
       response: {} // Used for storing response from Last.fm
     };
   }
 
-  handleChange = (e) => {
+  updateState = (e) => {
     this.setState({ [e.target.name] : e.target.value });
   }
 
@@ -51,12 +52,9 @@ class App extends Component {
       <div className="App">
         <Header />
         <main> { /* TODO: Main should be a component. */ }
-          <Search
-            handleChange={ this.handleChange }
-            value={ this.state.artist }
-            fetchResponse={ this.fetchResponse }
-          />
+          <Search handleChange={ this.updateState } value={ this.state.artist } fetchResponse={ this.fetchResponse } />
           { resultHeadline }
+          <Range name="limit" value={ this.state.limit } handleInput={ this.updateState } handleChange={ this.fetchResponse } />
           <div className="Cards">
             { cards ? cards : '' }
             </div>

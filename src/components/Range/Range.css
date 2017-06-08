@@ -1,0 +1,45 @@
+.range {
+  border-radius: 0.25rem;
+  height: 0.25rem;
+  outline: none;
+  width: 10rem;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Firefox */
+.range::-moz-range-track {
+  background-color: var(--white);
+  border-radius: 0.25rem;
+  height: 0.25rem;
+  width: 10rem;
+  outline: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Chrome and Safari */
+.range::-webkit-slider-thumb {
+  border: .25rem solid var(--white);
+  border-radius: 1rem;
+  background-color: var(--pink);
+  cursor: pointer;
+  height: 1.2rem;
+  width: 1.2rem;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Firefox */
+.range::-moz-range-thumb {
+  background-color: var(--pink);
+  border: .25rem solid var(--white);
+  border-radius: 1rem;
+  cursor: pointer;
+  height: 1.2rem;
+  width: 1.2rem;
+  -moz-appearance: none;
+  appearance: none;
+}

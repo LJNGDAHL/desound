@@ -1,9 +1,9 @@
 import React from 'react';
 import './InputField.css';
 
-const InputField = ({ handleChange, value, name }) => {
+const InputField = ({ handleChange, value, name, type }) => {
   return (
-    <input className="InputField" type="text" name={ name } onChange={ handleChange } value={ value } />
+    <input className="InputField" type={ type } name={ name } onChange={ handleChange } placeholder={ value } value={ value } min="1" max="50" />
   );
 };
 
