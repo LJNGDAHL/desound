@@ -1,15 +1,12 @@
 .button {
-  display: block;
-  margin: 2rem auto;
   background: none;
-  border: 2px solid var(--white);
-  color: var(--white);
-  cursor: pointer;
-  font: inherit;
-  font-weight: 600;
-  font-smoothing: antialiased;
-  line-height: 1;
   border-radius: 20px;
+  border: 2px solid var(--white);
+  cursor: pointer;
+  display: block;
+  font-smoothing: antialiased;
+  margin: 2rem auto;
+  line-height: 1;
   padding: 0.7rem 3rem 0.5rem;
   transition: 300ms;
   text-transform: uppercase;
@@ -18,9 +15,4 @@
 .button:hover {
   background-color: var(--white);
   color: var(--pink);
-  outline: none;
-}
-
-.button:focus {
-  outline: none;
 }

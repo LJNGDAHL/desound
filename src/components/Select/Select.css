@@ -1,14 +1,10 @@
 /* Reset Select */
 select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -ms-appearance: none;
   appearance: none;
   box-shadow: none;
   border: 0 !important;
   background: transparent;
   background-image: none;
-  outline: 0;
 }
 
 .select {
