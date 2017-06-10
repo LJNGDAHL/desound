@@ -1,0 +1,32 @@
+.filter {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 2rem auto 0;
+  max-width: 1000px;
+  padding: 1rem;
+}
+
+.filter__item {
+  border: 2px solid var(--white);
+  box-sizing: border-box;
+  min-height: 8rem;
+  min-width: 350px;
+  padding: 0.5rem 1rem 1rem;
+  width: 50%;
+}
+
+@media screen and (min-width: 800px) {
+  .filter {
+    align-items: flex-start;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 0 2rem 0.5rem;
+  }
+
+  .filter__item:not(:last-of-type) {
+    border-right: none;
+  }
+}
