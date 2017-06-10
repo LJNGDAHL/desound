@@ -1,18 +1,27 @@
 .button {
   background: none;
-  border-radius: 20px;
-  border: 2px solid var(--white);
+  border: none;
   cursor: pointer;
   display: block;
   font-smoothing: antialiased;
-  margin: 2rem auto;
   line-height: 1;
-  padding: 0.7rem 3rem 0.5rem;
   transition: 300ms;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.button:not(.button--minimal) {
+  border: 2px solid var(--white);
+  border-radius: 20px;
+  margin: 2rem auto;
+  padding: 0.7rem 3rem 0.5rem;
   text-transform: uppercase;
 }
 
 .button:hover {
-  background-color: var(--white);
   color: var(--pink);
+}
+
+.button:hover:not(.button--minimal) {
+  background-color: var(--white);
 }

@@ -46,7 +46,6 @@ button,
 button:focus,
 button:hover,
 input,
-input:focus,
 select {
   font: inherit;
   font-weight: 600;

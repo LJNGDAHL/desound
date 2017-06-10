@@ -11,7 +11,7 @@ const Card = ({ index, artist, onClick }) => {
         <img className="card__img" src={ artist.image[4]['#text'] } alt={ artist.name }/>
       </div>
       <div className="card__content">
-        <button name="artist" value={ artist.name } onClick={ onClick }>
+        <button className="button button--minimal" name="artist" value={ artist.name } onClick={ onClick }>
           <h3 className="card__artist">{ artist.name }</h3>
         </button>
         <p className="match">{ Math.round(artist.match * 100) } % Match</p>
