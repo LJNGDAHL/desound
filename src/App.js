@@ -23,8 +23,6 @@ class App extends Component {
     };
   }
 
-
-  // FIXME: This should take an object instead of an event.
   /**
    * Takes the event and update state property that correlate with target name.
    * @param  {Object} e The event.
@@ -34,20 +32,27 @@ class App extends Component {
     this.setState({ [target.name] : target.value });
   }
 
+  // FIXME: Replace above function with this when time is right. Then rename of course.
+  updateStateRefined = input => {
+    this.setState({ [input.name]: input.value } );
+  }
+
   /**
    * Retrieves data from last.fm based on the band user decided to search on.
    */
-  fetchData = () => {
-    const { artist, method, limit, baseURL } = this.state;
+  // FIXME: This should be broken down to smaller parts.
+  fetchData = (data = {}) => {
+    const { artist, method, limit, baseURL } = { ...this.state, ...data };
     const query = `${baseURL}&method=artist.${method}&artist=${artist}&limit=${limit}&api_key=${API_key}`;
 
-    this.setState({ fetchInitialized: true, fetchPending: true });
+    this.setState({ fetchInitialized: true, fetchPending: true, ...data });
 
     fetch(query)
       .then(response => response.json())
       .then((response) => {
         if (!response.error) {
           this.setState({ response, fetchCompleted: true });
+              console.log(this.state.response);
 
           setTimeout(() => {
             this.setState({ fetchPending: false });
@@ -68,14 +73,15 @@ class App extends Component {
       limit: this.state.limit,
       method: this.state.method,
       response: this.state.response,
-      updateState: this.updateState
+      updateState: this.updateState,
+      updateStateRefined: this.updateStateRefined
     };
 
     // If fetch is pending, show loader, else, show content.
-    const content = this.state.fetchPending ? <Loader /> : <Content { ...contentProps } />;
+    const searchResult = this.state.fetchPending ? <Loader /> : <Content { ...contentProps } />;
 
     // Only show div with content if user has initialized a search.
-    const contentContainer = (this.state.fetchInitialized) ? <div>{ content }</div> : '';
+    const searchResultContainer = (this.state.fetchInitialized) ? <div>{ searchResult }</div> : '';
 
     return (
       <div className="app">
@@ -83,7 +89,7 @@ class App extends Component {
         <main className="front">
           <Search handleChange={ this.updateState } value={ this.state.artist } handleClick={ this.fetchData } />
         </main>
-        { contentContainer }
+        { searchResultContainer }
       </div>
     );
   }

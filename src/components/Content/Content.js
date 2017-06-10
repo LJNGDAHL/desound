@@ -1,37 +1,50 @@
 import React from 'react';
 import './Content.css';
-import ControlSection from '../ControlSection/ControlSection';
+import Filter from '../Filter/Filter';
 import Card from '../Card/Card';
 
-const Content = ({ fetchData, limit, method, response, updateState }) => {
+const Content = ({ fetchData, limit, method, response, updateState, updateStateRefined }) => {
 
-  // Properties needed in ControlSection component
+  // Properties needed in Filter component
   const controlProps = {
     fetchData,
     limit,
     method,
-    updateState
+    updateStateRefined
   };
 
-  const cards = response.similarartists.artist.map((artist, index) => {
-    /**
-     * Update state and perform a new search based on current target
-     * when user clicks on artist name.
-     *
-     * @param  {object} e The current event.
-     */
-    const onArtistClick = (e) => {
-      updateState(e);
-      fetchData();
-    };
+  let typeOfSearch;
+  let cards = '';
 
-    return (<Card key={ index } artist={ artist } onClick={ onArtistClick }/>);
-  });
+  if (method === 'getsimilar') {
+    typeOfSearch = response.similarartists.artist;
+  } else if (method === 'gettoptracks') {
+    typeOfSearch = response.toptracks.track;
+  } else if (method === 'gettopalbums') {
+    typeOfSearch = response.topalbums.album;
+  }
+
+  if (typeOfSearch) {
+    cards = typeOfSearch.map((searchResult, index) => {
+      /**
+      * Update state and perform a new search based on current target
+      * when user clicks on artist name. Only used when searching on similarartists.
+      *
+      * @param  {object} e The current event.
+      */
+      const onArtistClick = (e) => {
+        updateState(e);
+        fetchData();
+      };
+
+      return (<Card key={ index } searchResult={ searchResult } onClick={ onArtistClick } method={ method } response={ response }/>);
+    });
+  }
 
   return (
     <div className="fade-in">
       <div className="cards">{ cards }</div>
-      <ControlSection { ...controlProps } />
+      <Filter { ...controlProps } />
     </div>
   );
 };

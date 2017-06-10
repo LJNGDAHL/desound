@@ -1,15 +1,27 @@
 import React from 'react';
 import './Select.css';
 
-// <Select method={ method } handleInput={ updateState } handleChange={ fetchData } />
+const Select = ({ selected, onChange }) => {
 
-const Select = ({selected, handleInput, handleChange}) => {
+  const onchange = event => {
+    switch (event.target.selectedIndex) {
+    case 0:
+      return onChange('getsimilar');
+    case 1:
+      return onChange('gettoptracks');
+    case 2:
+      return onChange('gettopalbums');
+    default:
+      console.log('That is not an available option.');
+    }
+  };
+
   return (
     <div className="select">
-      <select className="slct" name="slct">
-        <option value="getsimilar" selected>Similar artists</option>
-        <option value="gettoptracks">Top tracks</option>
-        <option value="getinfo">Top album</option>
+      <select name="method" onChange={ onchange }>
+        <option value="getsimilar" defaultValue={ selected === 'getsimilar' }>Similar artists</option>
+        <option value="gettoptracks" defaultValue={ selected === 'gettoptracks' }>Top tracks</option>
+        <option value="gettopalbums" defaultValue={ selected === 'gettopalbums' }>Top album</option>
       </select>
     </div>
   );
