@@ -14,7 +14,18 @@ const Content = ({ fetchData, limit, method, response, updateState }) => {
   };
 
   const cards = response.similarartists.artist.map((artist, index) => {
-    return (<Card key={ index } artist={ artist } />);
+    /**
+     * Update state and perform a new search based on current target
+     * when user clicks on artist name.
+     *
+     * @param  {object} e The current event.
+     */
+    const onArtistClick = (e) => {
+      updateState(e);
+      fetchData();
+    };
+
+    return (<Card key={ index } artist={ artist } onClick={ onArtistClick }/>);
   });
 
   return (

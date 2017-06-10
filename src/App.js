@@ -23,12 +23,15 @@ class App extends Component {
     };
   }
 
+
+  // FIXME: This should take an object instead of an event.
   /**
    * Takes the event and update state property that correlate with target name.
    * @param  {Object} e The event.
    */
   updateState = (e) => {
-    this.setState({ [e.target.name] : e.target.value });
+    const { currentTarget: target } = e;
+    this.setState({ [target.name] : target.value });
   }
 
   /**
