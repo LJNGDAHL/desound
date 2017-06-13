@@ -1,0 +1,104 @@
+/* -----------------------------------------------------------------------------
+  NAVIGATION BAR
+-----------------------------------------------------------------------------*/
+
+.navigation {
+  box-sizing: border-box;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  position: fixed;
+  top: -150px;
+  right: 0;
+  background-color: var(--white);
+  color: var(--pink);
+  z-index: 2;
+  width: 100vw;
+  height: 150px;
+  transition: top 300ms ease-in-out 75ms;
+}
+
+.navigation a {
+  color: var(--pink);
+}
+
+.navigation.navigation--visible {
+  top: 0;
+}
+
+/* -----------------------------------------------------------------------------
+  NAVIGATION ICON
+-----------------------------------------------------------------------------*/
+.nav-icon {
+  cursor: pointer;
+  height: 40px;
+  position: absolute;
+  top: 1.5rem;
+  right: 1.3rem;
+  transform: rotate(0deg);
+  transition: 500ms ease-in-out;
+  width: 50px;
+  z-index: 3;
+}
+
+.nav-icon span {
+  background: var(--white);
+  border-radius: 9px;
+  display: block;
+  height: 9px;
+  left: 0;
+  opacity: 1;
+  position: absolute;
+  transform: rotate(0deg);
+  transition: 250ms ease-in-out;
+  width: 100%;
+}
+
+.nav-icon span:nth-child(1) {
+  top: 0;
+}
+
+.nav-icon span:nth-child(2),.nav-icon span:nth-child(3) {
+  top: 16px;
+}
+
+.nav-icon span:nth-child(4) {
+  top: 32px;
+}
+
+.nav-icon.open span {
+  background: var(--pink);
+}
+
+.nav-icon.open span:nth-child(1) {
+  left: 50%;
+  top: 16px;
+  width: 0%;
+}
+
+.nav-icon.open span:nth-child(2) {
+  transform: rotate(45deg);
+}
+
+.nav-icon.open span:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
+.nav-icon.open span:nth-child(4) {
+  left: 50%;
+  top: 16px;
+  width: 0;
+}
+
+/* -----------------------------------------------------------------------------
+  NAVIGATION LINK
+-----------------------------------------------------------------------------*/
+
+.navigation__link {
+  text-decoration: none;
+}
+
+.navigation__link.active {
+  font-weight: 600;
+}

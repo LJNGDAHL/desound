@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom';
-
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 import { API_key } from './credentials';
 import Search from './components/Search/Search';
@@ -12,27 +7,10 @@ import Header from './components/Header/Header';
 import Loader from './components/Loader/Loader';
 import SearchResult from './components/SearchResult/SearchResult';
 
-// TODO: Fixa Router
-// I Return i klassen App, skriv:
-/*
-  const About = () => <h1>About</h1>
-  const Home = () => <h1>Home</h1>
-
-  <Router>
-    <div>
-      // Plocka ut i en egen komponent.
-      // Se till att skicka med props i den,
-      samt att importera { Link } från react-router-dom.
-      <nav>
-        <NavLink to="/">Home</NavLink> // genom att använda NavLink, så får du active på köpet.
-        <NavLink to="/about">About</NavLink>
-      </nav>
-      <Route exact path="/" component={ Home } />
-      <Route path="/about" component={ About } />
-      <Route path="/:random" component={ Home } /> // Skriver över alla.
-    </div>
-  </Router>
- */
+// Dynamic Content, changed on routings
+import Home from './components/Home/Home';
+import About from './components/About/About';
+import Lastfm from './components/Lastfm/Lastfm';
 
 class App extends Component {
   constructor() {
@@ -103,20 +81,48 @@ class App extends Component {
       updateStateRefined: this.updateStateRefined
     };
 
+    // Props needed in 'Home' Component
+    const homeProps = {
+      fetchData: this.fetchData,
+      limit: this.state.limit,
+      method: this.state.method,
+      response: this.state.response,
+      updateState: this.updateState,
+      updateStateRefined: this.updateStateRefined,
+      fetchInitialized: this.state.fetchInitialized,
+      fetchPending: this.fetchPending,
+      value: this.state.value,
+      artist: this.state.artist
+    };
+
+    // Sends down necessary props
+    const HomeWrapper = () => {
+      return(
+        <div>
+          <Home { ...homeProps } />
+        </div>
+      );
+    };
+
     // If fetch is pending, show loader, else, show content.
     const searchResult = this.state.fetchPending ? <Loader /> : <SearchResult { ...resultProps } />;
 
     // Only show div with content if user has initialized a search.
-    const searchResultContainer = (this.state.fetchInitialized) ? <div>{ searchResult }</div> : '';
+    const searchResultContainer = this.state.fetchInitialized ? <div>{ searchResult }</div> : '';
+
+    <Home />;
 
     return (
-      <div className="app">
-        <Header />
-        <main className="front">
-          <Search handleChange={ this.updateState } value={ this.state.artist } handleClick={ this.fetchData } />
-        </main>
-        { searchResultContainer }
-      </div>
+      <Router>
+        <div>
+          <Header />
+            <Route exact path="/" component={ HomeWrapper } />
+            <Route path="/about" component={ About }/>
+            <Route path="/lastfm" component={ Lastfm } />
+            <Search handleChange={ this.updateState } value={ this.state.artist } handleClick={ this.fetchData } />
+            { searchResultContainer }
+        </div>
+      </Router>
     );
   }
 }
