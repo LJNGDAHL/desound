@@ -15,7 +15,7 @@ class Range extends Component {
     };
 
     return (
-      <input className="range" type="range" name={ name } onChange={ onchange } value={ value } min="1" max="50" />
+      <input className="range" type="range" name={ name } onChange={ onchange } value={ value } min="1" max="28" />
     );
   }
 }

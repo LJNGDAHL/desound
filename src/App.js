@@ -10,7 +10,7 @@ import { API_key } from './credentials';
 import Search from './components/Search/Search';
 import Header from './components/Header/Header';
 import Loader from './components/Loader/Loader';
-import Content from './components/Content/Content';
+import SearchResult from './components/SearchResult/SearchResult';
 
 // TODO: Fixa Router
 // I Return i klassen App, skriv:
@@ -80,8 +80,6 @@ class App extends Component {
       .then((response) => {
         if (!response.error) {
           this.setState({ response, fetchCompleted: true });
-              console.log(this.state.response);
-
           setTimeout(() => {
             this.setState({ fetchPending: false });
           }, 1500);
@@ -95,9 +93,8 @@ class App extends Component {
   }
 
   render() {
-    // Props needed in Content component.
-    // TODO: Rename to SearchResult.
-    const contentProps = {
+    // Props needed in SearchResult component.
+    const resultProps = {
       fetchData: this.fetchData,
       limit: this.state.limit,
       method: this.state.method,
@@ -107,7 +104,7 @@ class App extends Component {
     };
 
     // If fetch is pending, show loader, else, show content.
-    const searchResult = this.state.fetchPending ? <Loader /> : <Content { ...contentProps } />;
+    const searchResult = this.state.fetchPending ? <Loader /> : <SearchResult { ...resultProps } />;
 
     // Only show div with content if user has initialized a search.
     const searchResultContainer = (this.state.fetchInitialized) ? <div>{ searchResult }</div> : '';

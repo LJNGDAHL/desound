@@ -13,8 +13,6 @@ const Filter = ({ fetchData, limit, method, updateState }) => {
     fetchData({ method });
   };
 
-  // FIXME: 'handleInput is not a function. WTF?'
-
   return (
     <div className="filter">
       <div className="filter__item">

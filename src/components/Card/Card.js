@@ -6,6 +6,7 @@ const Card = ({ key, searchResult, method, onClick }) => {
   // TODO: Figure out why key is not working!
   // TODO: Limit search when searching on top albums.
   const youtubeLink = `https://www.youtube.com/results?search_query=${searchResult.name}`;
+  const defaultImageUrl = 'http://bit.ly/2s5LBWL'; // Used if no image is available
   let methodSpecificData = {};
 
   // Render different content based on search method.
@@ -45,14 +46,14 @@ const Card = ({ key, searchResult, method, onClick }) => {
         </div>
     };
     break;
-  default:
-    methodSpecificData = {};
   }
+
+  const imageURL = searchResult.image[methodSpecificData.imageNumber]['#text'];
 
   return (
     <div className="card" key={ key }>
       <div className="card__img-container">
-        <img className="card__img" src={ searchResult.image[methodSpecificData.imageNumber]['#text'] } alt={ searchResult.name }/>
+        <img className="card__img" src={ imageURL ? imageURL : defaultImageUrl } alt={ searchResult.name }/>
       </div>
       { methodSpecificData.uniqueContent }
     </div>

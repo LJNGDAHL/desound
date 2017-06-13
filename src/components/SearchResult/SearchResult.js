@@ -1,16 +1,16 @@
 import React from 'react';
-import './Content.css';
+import './SearchResult.css';
 import Filter from '../Filter/Filter';
 import Card from '../Card/Card';
 
-const Content = ({ fetchData, limit, method, response, updateState, updateStateRefined }) => {
+const SearchResult = ({ fetchData, limit, method, response, updateState }) => {
 
   // Properties needed in Filter component
   const filterProps = {
     fetchData,
     limit,
     method,
-    updateStateRefined
+    updateState
   };
 
   let typeOfSearch;
@@ -49,4 +49,4 @@ const Content = ({ fetchData, limit, method, response, updateState, updateStateR
   );
 };
 
-export default Content;
+export default SearchResult;
