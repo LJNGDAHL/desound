@@ -6,7 +6,7 @@ import Card from '../Card/Card';
 const Content = ({ fetchData, limit, method, response, updateState, updateStateRefined }) => {
 
   // Properties needed in Filter component
-  const controlProps = {
+  const filterProps = {
     fetchData,
     limit,
     method,
@@ -44,7 +44,7 @@ const Content = ({ fetchData, limit, method, response, updateState, updateStateR
   return (
     <div className="fade-in">
       <div className="cards">{ cards }</div>
-      <Filter { ...controlProps } />
+      <Filter { ...filterProps } />
     </div>
   );
 };

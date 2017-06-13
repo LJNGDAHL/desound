@@ -28,7 +28,7 @@ const Card = ({ key, searchResult, method, onClick }) => {
       imageNumber: 2,
       uniqueContent:
         <div className="card__content">
-          <h3 className="card__artist">{ key }. { searchResult.name }</h3>
+          <h3 className="card__artist">{ searchResult.name }</h3>
           <p className="listeners">{ searchResult.listeners } listeners</p>
           <Link url={youtubeLink}>Explore on Youtube</Link>
         </div>

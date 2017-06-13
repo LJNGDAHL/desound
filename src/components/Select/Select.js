@@ -16,12 +16,15 @@ const Select = ({ selected, onChange }) => {
     }
   };
 
+  // The options available for filtering. Matches 'selected'
+  const options = ['getsimilar', 'gettoptracks', 'gettopalbums'];
+
   return (
     <div className="select">
       <select name="method" onChange={ onchange }>
-        <option value="getsimilar" defaultValue={ selected === 'getsimilar' }>Similar artists</option>
-        <option value="gettoptracks" defaultValue={ selected === 'gettoptracks' }>Top tracks</option>
-        <option value="gettopalbums" defaultValue={ selected === 'gettopalbums' }>Top album</option>
+        <option value={ options[0] } selected={ selected === options[0] ? ' selected' : '' }>Similar artists</option>
+        <option value={ options[1] } selected={ selected === options[1] ? ' selected' : '' }>Top tracks</option>
+        <option value={ options[2] } selected={ selected === options[2] ? ' selected' : '' }>Top album</option>
       </select>
     </div>
   );

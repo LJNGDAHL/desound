@@ -3,7 +3,6 @@ import './Search.css';
 import Button from '../Button/Button';
 import InputField from '../InputField/InputField';
 
-
 const Search = ({ handleChange, value, handleClick }) => {
   return (
     <div className="Search">

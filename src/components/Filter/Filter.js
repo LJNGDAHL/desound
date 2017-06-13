@@ -4,8 +4,9 @@ import Range from '../Range/Range';
 import Select from '../Select/Select';
 
 const Filter = ({ fetchData, limit, method, updateState }) => {
+
   /**
-   * Update state and perform a new search based on current target
+   * Updates state and performs a new search based on current target
    * when user clicks on artist name.
    */
   const handleSelect = method => {

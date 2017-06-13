@@ -1,10 +1,38 @@
 import React, { Component } from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
+
 import './App.css';
 import { API_key } from './credentials';
 import Search from './components/Search/Search';
 import Header from './components/Header/Header';
 import Loader from './components/Loader/Loader';
 import Content from './components/Content/Content';
+
+// TODO: Fixa Router
+// I Return i klassen App, skriv:
+/*
+  const About = () => <h1>About</h1>
+  const Home = () => <h1>Home</h1>
+
+  <Router>
+    <div>
+      // Plocka ut i en egen komponent.
+      // Se till att skicka med props i den,
+      samt att importera { Link } från react-router-dom.
+      <nav>
+        <NavLink to="/">Home</NavLink> // genom att använda NavLink, så får du active på köpet.
+        <NavLink to="/about">About</NavLink>
+      </nav>
+      <Route exact path="/" component={ Home } />
+      <Route path="/about" component={ About } />
+      <Route path="/:random" component={ Home } /> // Skriver över alla.
+    </div>
+  </Router>
+ */
 
 class App extends Component {
   constructor() {
@@ -68,6 +96,7 @@ class App extends Component {
 
   render() {
     // Props needed in Content component.
+    // TODO: Rename to SearchResult.
     const contentProps = {
       fetchData: this.fetchData,
       limit: this.state.limit,
