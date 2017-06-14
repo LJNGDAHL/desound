@@ -2,15 +2,10 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 import { API_key } from './credentials';
-import Search from './components/Search/Search';
 import Header from './components/Header/Header';
-import Loader from './components/Loader/Loader';
-import SearchResult from './components/SearchResult/SearchResult';
-
-// Dynamic Content, changed on routings
-import Home from './components/Home/Home';
-import About from './components/About/About';
-import Lastfm from './components/Lastfm/Lastfm';
+import Home from './views/Home';
+import About from './views/About';
+import Lastfm from './views/Lastfm';
 
 class App extends Component {
   constructor() {
@@ -71,56 +66,25 @@ class App extends Component {
   }
 
   render() {
-    // Props needed in SearchResult component.
-    const resultProps = {
-      fetchData: this.fetchData,
-      limit: this.state.limit,
-      method: this.state.method,
-      response: this.state.response,
-      updateState: this.updateState,
-      updateStateRefined: this.updateStateRefined
-    };
-
     // Props needed in 'Home' Component
     const homeProps = {
+      artist: this.state.artist,
       fetchData: this.fetchData,
+      fetchInitialized: this.state.fetchInitialized,
+      fetchPending: this.state.fetchPending,
       limit: this.state.limit,
       method: this.state.method,
       response: this.state.response,
-      updateState: this.updateState,
-      updateStateRefined: this.updateStateRefined,
-      fetchInitialized: this.state.fetchInitialized,
-      fetchPending: this.fetchPending,
-      value: this.state.value,
-      artist: this.state.artist
+      updateState: this.updateState
     };
-
-    // Sends down necessary props
-    const HomeWrapper = () => {
-      return(
-        <div>
-          <Home { ...homeProps } />
-        </div>
-      );
-    };
-
-    // If fetch is pending, show loader, else, show content.
-    const searchResult = this.state.fetchPending ? <Loader /> : <SearchResult { ...resultProps } />;
-
-    // Only show div with content if user has initialized a search.
-    const searchResultContainer = this.state.fetchInitialized ? <div>{ searchResult }</div> : '';
-
-    <Home />;
 
     return (
       <Router>
         <div>
           <Header />
-            <Route exact path="/" component={ HomeWrapper } />
+            <Route exact path='/' render={ () => <Home { ...homeProps } /> } />
             <Route path="/about" component={ About }/>
             <Route path="/lastfm" component={ Lastfm } />
-            <Search handleChange={ this.updateState } value={ this.state.artist } handleClick={ this.fetchData } />
-            { searchResultContainer }
         </div>
       </Router>
     );

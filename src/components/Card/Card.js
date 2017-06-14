@@ -2,8 +2,7 @@ import React from 'react';
 import './Card.css';
 import Link from '../Link/Link';
 
-const Card = ({ key, searchResult, method, onClick }) => {
-  // TODO: Figure out why key is not working!
+const Card = ({ searchResult, method, onClick }) => {
   // TODO: Limit search when searching on top albums.
   const youtubeLink = `https://www.youtube.com/results?search_query=${searchResult.name}`;
   const defaultImageUrl = 'http://bit.ly/2s5LBWL'; // Used if no image is available
@@ -51,7 +50,7 @@ const Card = ({ key, searchResult, method, onClick }) => {
   const imageURL = searchResult.image[methodSpecificData.imageNumber]['#text'];
 
   return (
-    <div className="card" key={ key }>
+    <div className="card">
       <div className="card__img-container">
         <img className="card__img" src={ imageURL ? imageURL : defaultImageUrl } alt={ searchResult.name }/>
       </div>

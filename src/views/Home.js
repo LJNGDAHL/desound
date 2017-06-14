@@ -1,20 +1,9 @@
 import React from 'react';
-import Loader from '../Loader/Loader';
-import SearchResult from '../SearchResult/SearchResult';
-import Search from '../Search/Search';
+import Loader from '../components/Loader/Loader';
+import SearchResult from '../components/SearchResult/SearchResult';
+import Search from '../components/Search/Search';
 
-const Home = props => {
-  const {
-    artist,
-    fetchData,
-    limit,
-    method,
-    response,
-    updateState,
-    fetchInitialized,
-    fetchPending,
-    value } = props;
-
+const Home = ({ artist, fetchData, limit, method, response, updateState, fetchInitialized, fetchPending }) => {
     // Props needed in SearchResult component.
   const resultProps = {
     fetchData,
@@ -30,8 +19,8 @@ const Home = props => {
   return(
     <div className="app">
       <main className="front">
-        <h1>Discover he he!</h1>
         <Search handleChange={ updateState } value={ artist } handleClick={ fetchData } />
+        { searchResultContainer }
       </main>
     </div>
   );
