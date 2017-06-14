@@ -1,5 +1,4 @@
 import React from 'react';
-import './Search.css';
 import Button from '../Button/Button';
 import InputField from '../InputField/InputField';
 

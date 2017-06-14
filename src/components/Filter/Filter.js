@@ -8,6 +8,8 @@ const Filter = ({ fetchData, limit, method, updateState }) => {
   /**
    * Updates state and performs a new search based on current target
    * when user clicks on artist name.
+   *
+   * @param  {string} method The search method to be used
    */
   const handleSelect = method => {
     fetchData({ method });

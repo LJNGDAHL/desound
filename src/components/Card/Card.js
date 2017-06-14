@@ -3,15 +3,14 @@ import './Card.css';
 import Link from '../Link/Link';
 
 const Card = ({ searchResult, method, onClick }) => {
-  // TODO: Limit search when searching on top albums.
   const youtubeLink = `https://www.youtube.com/results?search_query=${searchResult.name}`;
-  const defaultImageUrl = 'http://bit.ly/2s5LBWL'; // Used if no image is available
-  let methodSpecificData = {};
+  const defaultImageUrl = 'http://bit.ly/2s5LBWL';
+  let searchSpecificData = {};
 
   // Render different content based on search method.
   switch (method) {
   case 'getsimilar':
-    methodSpecificData = {
+    searchSpecificData = {
       imageNumber: 4,
       uniqueContent:
         <div className="card__content">
@@ -24,7 +23,7 @@ const Card = ({ searchResult, method, onClick }) => {
     };
     break;
   case 'gettoptracks':
-    methodSpecificData = {
+    searchSpecificData = {
       imageNumber: 2,
       uniqueContent:
         <div className="card__content">
@@ -35,7 +34,7 @@ const Card = ({ searchResult, method, onClick }) => {
     };
     break;
   case 'gettopalbums':
-    methodSpecificData = {
+    searchSpecificData = {
       imageNumber: 2,
       uniqueContent:
         <div className="card__content">
@@ -45,16 +44,18 @@ const Card = ({ searchResult, method, onClick }) => {
         </div>
     };
     break;
+  default:
+    searchSpecificData = {};
   }
 
-  const imageURL = searchResult.image[methodSpecificData.imageNumber]['#text'];
+  const imageURL = searchResult.image[searchSpecificData.imageNumber]['#text'];
 
   return (
     <div className="card">
       <div className="card__img-container">
         <img className="card__img" src={ imageURL ? imageURL : defaultImageUrl } alt={ searchResult.name }/>
       </div>
-      { methodSpecificData.uniqueContent }
+      { searchSpecificData.uniqueContent }
     </div>
   );
 };

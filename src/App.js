@@ -78,7 +78,7 @@ class App extends Component {
         <div className="wrapper">
           <Header />
           <Route render={({ location }) => (
-          <CSSTransitionGroup component="main" className="app" transitionName="fade">
+          <CSSTransitionGroup component="main" className="app" transitionName="fade" transitionEnterTimeout={ 0 }  transitionLeaveTimeout={ 0 }>
             <Switch key={location.key} location={location}>
               <Route exact path='/' render={ () => <Home { ...homeProps } /> } />
               <Route path="/about" component={ About }/>

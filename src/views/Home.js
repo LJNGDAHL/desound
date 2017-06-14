@@ -4,7 +4,8 @@ import SearchResult from '../components/SearchResult/SearchResult';
 import Search from '../components/Search/Search';
 
 const Home = ({ artist, fetchData, limit, method, response, updateState, fetchInitialized, fetchPending }) => {
-    // Props needed in SearchResult component.
+
+  // Props needed in SearchResult component.
   const resultProps = {
     fetchData,
     limit,
@@ -13,14 +14,14 @@ const Home = ({ artist, fetchData, limit, method, response, updateState, fetchIn
     updateState
   };
 
-  const searchResult = fetchPending ? <Loader /> : <SearchResult { ...resultProps } />;
-  const searchResultContainer = fetchInitialized ? <div>{ searchResult }</div> : '';
+  const result = fetchPending ? <Loader /> : <SearchResult { ...resultProps } />;
+  const resultWrapper = fetchInitialized ? <div>{ result }</div> : '';
 
   return(
-    <main className="app__content">
+    <div className="app__content">
       <Search handleChange={ updateState } value={ artist } handleClick={ fetchData } />
-      { searchResultContainer }
-    </main>
+      { resultWrapper }
+    </div>
   );
 };
 

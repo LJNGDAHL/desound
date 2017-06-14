@@ -1,109 +1,38 @@
 .app {
   box-sizing: border-box;
-  padding: 1rem 2rem 10rem;
-  width: 100vw;
-  max-width: 900px;
   margin: 0 auto;
+  max-width: 900px;
+  padding: 1rem 2rem 10rem;
   position: relative;
+  width: 100vw;
 }
 
 .app__content {
   box-sizing: border-box;
-  margin: 0 auto;
+  left: 0;
+  margin: 0 auto 2rem;
   position: absolute;
   top: 0;
   width: 100%;
-  left: 0;
-  margin-bottom: 2rem;
 }
 
 .app__content--text {
   border-top: 2px solid var(--white);
   border-bottom: 2px solid var(--white);
-  padding: 3rem 2rem 2rem;
   font-size: 1.4rem;
   line-height: 1.2;
+  padding: 3rem 2rem 2rem;
   -webkit-backdrop-filter: blur(2px); /* Only supported in Safari */
   backdrop-filter: blur(2px);
 }
 
-.app__content--text h2 {
+.app__headline {
   font-size: 2.5rem;
   margin: 0;
 }
 
-.cards {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 1rem auto 0;
-  max-width: 1000px;
-}
-
-@media screen and (min-width: 600px) {
-  .cards {
-    justify-content: space-between;
-  }
-}
-
-.fade-in {
-  opacity: 0;
-  animation-name: fadeIn;
-  animation-fill-mode: forwards;
-  animation-duration: 750ms;
-  animation-delay: 250ms;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/* TODO: Move this to a component of it's own */
-.search-options {
-  box-sizing: border-box;
-  display: flex;
-  justify-content: space-between;
-  max-width: 1000px;
-  margin: 2rem auto 0;
-  flex-direction: column;
-  align-items: center;
-  padding: 1rem;
-}
-
-.search-options__item {
-  box-sizing: border-box;
-  border: 2px solid var(--white);
-  padding: 0.5rem 1rem 1rem;
-  min-height: 8rem;
-  min-width: 350px;
-  width: 50%;
-}
-
-.search-options h2 {
-  font-size: 1.3rem;
-}
-
-@media screen and (min-width: 800px) {
-  .search-options {
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: flex-start;
-    padding: 0 2rem 0.5rem;
-  }
-
-  .search-options__item:not(:last-of-type) {
-    border-right: none;
-  }
-}
-
 /* -----------------------------------------------------------------------------
-  TRANSITIONS BETWEEN PAGES
+  TRANSITIONS BETWEEN PAGES (FROM REACT'S CSSTransitionGroup)
 -----------------------------------------------------------------------------*/
 
 .fade-enter {

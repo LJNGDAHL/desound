@@ -1,0 +1,31 @@
+.cards {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 1rem auto 0;
+  max-width: 1000px;
+}
+
+@media screen and (min-width: 600px) {
+  .cards {
+    justify-content: space-between;
+  }
+}
+
+.fade-in {
+  animation-name: fadeIn;
+  animation-fill-mode: forwards;
+  animation-duration: 750ms;
+  animation-delay: 250ms;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -29,9 +29,7 @@
 }
 
 @keyframes stretchdelay {
-  0%,
-  40%,
-  100% {
+  0%, 40%, 100% {
     transform: scaleY(0.4);
   }
 

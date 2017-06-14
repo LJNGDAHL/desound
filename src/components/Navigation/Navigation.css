@@ -3,29 +3,29 @@
 -----------------------------------------------------------------------------*/
 
 .navigation {
+  align-items: center;
+  background-color: var(--white);
   box-sizing: border-box;
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
-  display: flex;
-  padding-top: 2rem;
-  align-items: center;
-  flex-direction: column;
-  position: fixed;
-  top: -200px;
-  right: 0;
-  background-color: var(--white);
   color: var(--cotton);
-  z-index: 2;
-  width: 100vw;
+  display: flex;
+  flex-direction: column;
   height: 200px;
+  padding-top: 2rem;
+  position: fixed;
+  right: 0;
+  top: -200px;
   transition: top 300ms ease-in-out 75ms;
+  width: 100vw;
+  z-index: 2;
 }
 
 @media screen and (min-width: 600px) {
   .navigation {
+    height: 190px;
     justify-content: center;
     padding: 0;
     top: -190px;
-    height: 190px;
   }
 }
 
@@ -35,15 +35,15 @@
 
 .navigation__headline {
   color: var(--cotton);
-  margin: 0.5rem;
   font-size: 1.7rem;
+  margin: 0.5rem;
 }
 
 @media screen and (min-width: 600px) {
   .navigation__headline {
+    left: 1.3rem;
     position: absolute;
     top: 1.5rem;
-    left: 1.3rem;
   }
 }
 

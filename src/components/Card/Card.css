@@ -44,12 +44,12 @@
   filter: blur(0);
   height: 100%;
   left: 0;
-  top: 0;
   object-fit: cover;
   position: absolute;
   width: 100%;
   transform: scale(1);
   transition: filter 300ms ease, transform 300ms ease;
+  top: 0;
 }
 
 .card:hover .card__img {

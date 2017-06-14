@@ -16,7 +16,7 @@ const Select = ({ selected, onChange }) => {
     }
   };
 
-  // The options available for filtering. Matches 'selected'
+  // The options available for filtering. Matches 'selected' property
   const options = ['getsimilar', 'gettoptracks', 'gettopalbums'];
 
   return (

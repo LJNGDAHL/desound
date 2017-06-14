@@ -1,9 +1,9 @@
 .link {
-  text-decoration: none;
-  padding-bottom: 0.2em;
   border-bottom: 2px solid transparent;
-  transition: border 450ms ease, color 450ms ease;
   color: var(--white);
+  padding-bottom: 0.2em;
+  text-decoration: none;
+  transition: border 450ms ease, color 450ms ease;
 }
 
 .link:hover {
@@ -11,8 +11,8 @@
 }
 
 .link--pink {
-  color: var(--lightpink);
   border-bottom: 2px solid var(--lightpink);
+  color: var(--lightpink);
 }
 
 .link--pink:hover {
