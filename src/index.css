@@ -9,7 +9,9 @@
   --white: #F8F8F8;
   --red: #b00505;
   --midnight: #3b386e;
+  --lightpink: #FFBBD1;
   --pink: #FF4582;
+  --cotton: #FFD3E1;
 }
 
 body, html {
@@ -55,4 +57,5 @@ select {
 
 a, button {
   color: var(--white);
+  text-decoration: none;
 }

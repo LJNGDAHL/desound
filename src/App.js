@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { CSSTransitionGroup } from 'react-transition-group';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import { API_key } from './credentials';
 import Header from './components/Header/Header';
@@ -33,15 +34,9 @@ class App extends Component {
     this.setState({ [target.name] : target.value });
   }
 
-  // FIXME: Replace above function with this when time is right. Then rename of course.
-  updateStateRefined = input => {
-    this.setState({ [input.name]: input.value } );
-  }
-
   /**
    * Retrieves data from last.fm based on the band user decided to search on.
    */
-  // FIXME: This should be broken down to smaller parts.
   fetchData = (data = {}) => {
     const { artist, method, limit, baseURL } = { ...this.state, ...data };
     const query = `${baseURL}&method=artist.${method}&artist=${artist}&limit=${limit}&api_key=${API_key}`;
@@ -80,11 +75,17 @@ class App extends Component {
 
     return (
       <Router>
-        <div>
+        <div className="wrapper">
           <Header />
-            <Route exact path='/' render={ () => <Home { ...homeProps } /> } />
-            <Route path="/about" component={ About }/>
-            <Route path="/lastfm" component={ Lastfm } />
+          <Route render={({ location }) => (
+          <CSSTransitionGroup component="main" className="app" transitionName="fade">
+            <Switch key={location.key} location={location}>
+              <Route exact path='/' render={ () => <Home { ...homeProps } /> } />
+              <Route path="/about" component={ About }/>
+              <Route path="/lastfm" component={ Lastfm } />
+            </Switch>
+          </CSSTransitionGroup>
+        )}/>
         </div>
       </Router>
     );
