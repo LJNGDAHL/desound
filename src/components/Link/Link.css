@@ -2,9 +2,19 @@
   text-decoration: none;
   padding-bottom: 0.2em;
   border-bottom: 2px solid transparent;
-  transition: border 450ms ease;
+  transition: border 450ms ease, color 450ms ease;
+  color: var(--white);
 }
 
 .link:hover {
   border-bottom: 2px solid var(--white);
+}
+
+.link--pink {
+  color: var(--lightpink);
+  border-bottom: 2px solid var(--lightpink);
+}
+
+.link--pink:hover {
+  color: var(--white);
 }

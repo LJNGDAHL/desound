@@ -13,7 +13,7 @@
   top: -200px;
   right: 0;
   background-color: var(--white);
-  color: var(--pink);
+  color: var(--cotton);
   z-index: 2;
   width: 100vw;
   height: 200px;
@@ -24,8 +24,8 @@
   .navigation {
     justify-content: center;
     padding: 0;
-    top: -170px;
-    height: 170px;
+    top: -190px;
+    height: 190px;
   }
 }
 
@@ -88,7 +88,7 @@
 }
 
 .nav-icon.open span {
-  background: var(--pink);
+  background: var(--cotton);
 }
 
 .nav-icon.open span:nth-child(1) {
@@ -116,7 +116,7 @@
 -----------------------------------------------------------------------------*/
 
 .navigation__link {
-  color: var(--pink);
+  color: inherit;
   text-decoration: none;
   text-transform: uppercase;
   line-height: 1.4;
@@ -130,6 +130,7 @@
 
 .navigation__link.active {
   font-weight: 700;
+  color: var(--pink);
 }
 
 
