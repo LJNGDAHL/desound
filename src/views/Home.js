@@ -17,12 +17,10 @@ const Home = ({ artist, fetchData, limit, method, response, updateState, fetchIn
   const searchResultContainer = fetchInitialized ? <div>{ searchResult }</div> : '';
 
   return(
-    <div className="app">
-      <main className="front">
-        <Search handleChange={ updateState } value={ artist } handleClick={ fetchData } />
-        { searchResultContainer }
-      </main>
-    </div>
+    <main className="app__content">
+      <Search handleChange={ updateState } value={ artist } handleClick={ fetchData } />
+      { searchResultContainer }
+    </main>
   );
 };
 
