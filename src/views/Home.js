@@ -1,7 +1,7 @@
 import React from 'react';
 import Loader from '../components/Loader/Loader';
 import SearchResult from '../components/SearchResult/SearchResult';
-import Search from '../components/Search/Search';
+import SearchForm from '../components/SearchForm/SearchForm';
 
 const Home = ({ artist, fetchData, limit, method, response, updateState, fetchInitialized, fetchPending }) => {
 
@@ -32,7 +32,7 @@ const Home = ({ artist, fetchData, limit, method, response, updateState, fetchIn
 
   return(
     <div className="app__content">
-      <Search handleChange={ updateState } value={ artist } onSubmit={ fetchData } />
+      <SearchForm handleChange={ updateState } value={ artist } onSubmit={ fetchData } />
       { searchresult }
     </div>
   );

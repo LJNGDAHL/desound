@@ -37,6 +37,26 @@ class App extends Component {
   }
 
   /**
+   * Sets a timeout in order to make the process look 'smoother',
+   * and then takes a string that is a message to the user.
+   * @param  {string} userInfo Depending on when the functions is runned.
+   * @return {[type]}          [description]
+   */
+  onError = (userInfo) => {
+    setTimeout(() => {
+      this.setState({
+        fetchPending: false,
+        fetchInitialized: false,
+        response: {
+          type: 'error',
+          title: 'Oops, something went wrong.',
+          text: userInfo
+        }
+      });
+    }, 1500);
+  }
+
+  /**
    * Retrieves data from last.fm based on the band user decided to search on.
    */
   fetchData = (data = {}) => {
@@ -54,20 +74,12 @@ class App extends Component {
             this.setState({ fetchPending: false });
           }, 1500);
         } else {
-          setTimeout(() => {
-            this.setState({
-              fetchPending: false,
-              fetchInitialized: false,
-              response: {
-                type: 'error',
-                title: 'Oops, something went wrong.',
-                text: 'Are you sure that band exists? It all seems to be a bit too obscure for me. Try again with another band, or come back later!'
-              }
-            });
-          }, 1500);
+          this.onError('Are you sure that band exists? It all seems to be a bit too obscure for me. Try again with another band, or come back later!');
         }
       })
-      .catch(err => console.log(err));
+      .catch(() => {
+        this.onError('I have no idea what went wrong. Please try again later.');
+      });
   }
 
   render() {
