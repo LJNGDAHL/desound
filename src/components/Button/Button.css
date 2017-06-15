@@ -5,7 +5,6 @@
   display: block;
   font-smoothing: antialiased;
   margin: 0 auto;
-  line-height: 1;
   transition: 300ms;
   text-align: center;
 }
