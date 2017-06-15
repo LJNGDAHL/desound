@@ -10,12 +10,10 @@
 /build
 
 # misc
-credentials.js
-src/img
 .DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env
+.env.development
+.env.test
+.env.production
 
 npm-debug.log*
