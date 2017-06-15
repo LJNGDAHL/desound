@@ -43,8 +43,8 @@ const SearchResult = ({ fetchData, limit, method, response, updateState }) => {
 
   return (
     <div className="fade-in">
-      <div className="cards">{ cards }</div>
       <Filter { ...filterProps } />
+      <div className="cards">{ cards }</div>
     </div>
   );
 };
