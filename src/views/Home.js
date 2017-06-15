@@ -19,7 +19,7 @@ const Home = ({ artist, fetchData, limit, method, response, updateState, fetchIn
 
   return(
     <div className="app__content">
-      <Search handleChange={ updateState } value={ artist } handleClick={ fetchData } />
+      <Search handleChange={ updateState } value={ artist } onSubmit={ fetchData } />
       { resultWrapper }
     </div>
   );

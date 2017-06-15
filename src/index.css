@@ -44,7 +44,13 @@ body {
 ------------------------------------------------------------------------------*/
 h1 {
   font-weight: 700;
-  font-size: 5rem;
+  font-size: 3.5rem;
+}
+
+@media screen and (min-width: 600px) {
+  h1 {
+    font-size: 5rem;
+  }
 }
 
 h2 {
