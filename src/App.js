@@ -2,18 +2,20 @@ import React, { Component } from 'react';
 import { CSSTransitionGroup } from 'react-transition-group';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
-import { API_key } from './credentials';
 import Header from './components/Header/Header';
 import Home from './views/Home';
 import About from './views/About';
 import Lastfm from './views/Lastfm';
+
+const API_KEY = process.env.REACT_APP_API_KEY;
+const API_PREFIX = process.env.REACT_APP_API_PREFIX;
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       artist: '',
-      baseURL: 'http://ws.audioscrobbler.com/2.0/?format=json',
+      baseURL: `${API_PREFIX}http://ws.audioscrobbler.com/2.0/?format=json`,
       country: '',
       fetchCompleted: false,
       fetchPending: false,
@@ -39,7 +41,7 @@ class App extends Component {
    */
   fetchData = (data = {}) => {
     const { artist, method, limit, baseURL } = { ...this.state, ...data };
-    const query = `${baseURL}&method=artist.${method}&artist=${artist}&limit=${limit}&api_key=${API_key}`;
+    const query = `${baseURL}&method=artist.${method}&artist=${artist}&limit=${limit}&api_key=${API_KEY}`;
 
     this.setState({ fetchInitialized: true, fetchPending: true, ...data });
 
