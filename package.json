@@ -3,20 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "mime-types": "^2.1.15",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-router-dom": "^4.1.1",
     "react-transition-group": "^1.2.0"
   },
   "devDependencies": {
+    "dotenv": "^4.0.0",
     "react-scripts": "1.0.7",
     "serve": "^5.2.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start:dev": "react-scripts start",
+    "start": "node -r dotenv/config server.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  },
-  "homepage" : "http://ljngdahl.se/desound/"
+  }
 }
