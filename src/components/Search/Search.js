@@ -4,7 +4,7 @@ import InputField from '../InputField/InputField';
 
 const Search = ({ handleChange, value, onSubmit }) => {
 
-  const onsubmit = (e) => {
+  const onsubmit = e => {
     e.preventDefault();
     onSubmit();
   };

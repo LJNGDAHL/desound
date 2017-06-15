@@ -55,11 +55,19 @@ class App extends Component {
           }, 1500);
         } else {
           setTimeout(() => {
-            this.setState({ fetchPending: false, fetchInitialized: false });
+            this.setState({
+              fetchPending: false,
+              fetchInitialized: false,
+              response: {
+                type: 'error',
+                title: 'Oops, something went wrong.',
+                text: 'Are you sure that band exists? It all seems to be a bit too obscure for me. Try again with another band, or come back later!'
+              }
+            });
           }, 1500);
         }
       })
-      .catch(err => console.log(err)); // TODO: Give user feedback.
+      .catch(err => console.log(err));
   }
 
   render() {
