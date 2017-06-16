@@ -10,7 +10,7 @@ class Range extends Component {
       handleInput(e);
       clearTimeout(this.timeout);
       this.timeout = setTimeout(() => {
-        handleChange(e);
+        handleChange(name, value);
       }, 450 );
     };
 

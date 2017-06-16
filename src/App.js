@@ -61,16 +61,25 @@ class App extends Component {
   fetchData = (data = {}) => {
     const { artist, method, limit, baseURL } = { ...this.state, ...data };
     const query = `${baseURL}&method=artist.${method}&artist=${artist}&limit=${limit}&api_key=${API_KEY}`;
+    const methodMap = {
+      getsimilar: 'similarartists.artist',
+      gettoptracks: 'toptracks.track',
+      gettopalbums: 'topalbums.album'
+    };
 
     this.setState({ fetchInitialized: true, fetchPending: true, ...data });
 
     fetch(query)
       .then(response => response.json())
       .then((response) => {
-        if (!response.error && response.similarartists.artist.length !== 0) {
+        // Get path based on search method
+        const path = methodMap[method];
+        // Get data from response using methodMap
+        const data = path.split('.').reduce((part, key) => part[key], response);
+        if (!response.error && data.length !== 0) {
           this.setState({ response, fetchCompleted: true });
           setTimeout(() => {
-            this.setState({ fetchPending: false });
+            this.setState({ fetchPending: false, limit: data.length });
           }, 1500);
         } else {
           this.onError('Are you sure that band exists? It all seems to be a bit too obscure for me. Try again with another band, or come back later!');

@@ -5,7 +5,6 @@ import Card from '../Card/Card';
 import { extractEvent } from '../../utils';
 
 const SearchResult = ({ fetchData, limit, method, response, updateState }) => {
-
   // Properties needed in Filter component
   const filterProps = {
     fetchData,
