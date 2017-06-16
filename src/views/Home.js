@@ -6,6 +6,7 @@ import SearchForm from '../components/SearchForm/SearchForm';
 const Home = ({ artist, fetchData, limit, method, response, updateState, fetchInitialized, fetchPending }) => {
 
   let errorMessage;
+  console.log(response);
 
   // If there is some kind of error with the API request, this text is shown
   if (response.type === 'error') {

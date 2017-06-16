@@ -68,6 +68,17 @@ select {
   text-align: center;
 }
 
+/* Removes horrible yellow background in Chrome */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus
+input:-webkit-autofill {
+  border-bottom: 1px solid var(--white);
+  box-shadow: none;
+  -webkit-text-fill-color: var(--white);
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 a, button {
   color: var(--white);
   text-decoration: none;

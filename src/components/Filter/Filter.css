@@ -15,7 +15,11 @@
   min-height: 8rem;
   min-width: 350px;
   padding: 0.5rem 1rem 1rem;
-  width: 50%;
+  width: 100%;
+}
+
+.filter__item:not(:last-of-type) {
+  border-bottom: none;
 }
 
 @media screen and (min-width: 800px) {
@@ -26,7 +30,12 @@
     padding: 0 2rem 0.5rem;
   }
 
+  .filter__item {
+    width: 50%;
+  }
+
   .filter__item:not(:last-of-type) {
     border-right: none;
+    border-bottom: 2px solid var(--white);
   }
 }

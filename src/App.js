@@ -67,10 +67,9 @@ class App extends Component {
     fetch(query)
       .then(response => response.json())
       .then((response) => {
-        if (!response.error) {
+        if (!response.error && response.similarartists.artist.length !== 0) {
           this.setState({ response, fetchCompleted: true });
           setTimeout(() => {
-            console.log(response);
             this.setState({ fetchPending: false });
           }, 1500);
         } else {
