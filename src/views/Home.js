@@ -32,7 +32,7 @@ const Home = ({ artist, fetchData, limit, method, response, updateState, fetchIn
 
   return(
     <div className="app__content">
-      <SearchForm handleChange={ updateState } value={ artist } onSubmit={ fetchData } />
+      <SearchForm handleChangeRefined={ updateState } value={ artist } onSubmit={ fetchData } />
       { searchresult }
     </div>
   );

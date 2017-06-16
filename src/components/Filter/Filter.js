@@ -2,6 +2,7 @@ import React from 'react';
 import './Filter.css';
 import Range from '../Range/Range';
 import Select from '../Select/Select';
+import { extractEvent } from '../../utils';
 
 const Filter = ({ fetchData, limit, method, updateState }) => {
 
@@ -19,7 +20,7 @@ const Filter = ({ fetchData, limit, method, updateState }) => {
     <div className="filter">
       <div className="filter__item">
         <h2>Showing <span className="number">{ limit }</span> results</h2>
-        <Range name="limit" value={ limit } handleInput={ updateState } handleChange={ fetchData } />
+        <Range name="limit" value={ limit } handleInput={ extractEvent(updateState) } handleChange={ fetchData } />
       </div>
       <div className="filter__item">
         <h2>Search Result Showing</h2>

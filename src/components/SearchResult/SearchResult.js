@@ -2,6 +2,7 @@ import React from 'react';
 import './SearchResult.css';
 import Filter from '../Filter/Filter';
 import Card from '../Card/Card';
+import { extractEvent } from '../../utils';
 
 const SearchResult = ({ fetchData, limit, method, response, updateState }) => {
 
@@ -32,10 +33,9 @@ const SearchResult = ({ fetchData, limit, method, response, updateState }) => {
       *
       * @param  {object} e The current event.
       */
-      const onArtistClick = (e) => {
-        updateState(e);
-        fetchData();
-      };
+      const onArtistClick = extractEvent((name, value) => {
+        fetchData({ [name]: value });
+      });
 
       return (<Card key={ index } searchResult={ searchResult } onClick={ onArtistClick } method={ method } response={ response }/>);
     });

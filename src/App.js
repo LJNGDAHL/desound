@@ -28,19 +28,18 @@ class App extends Component {
   }
 
   /**
-   * Takes the event and update state property that correlate with target name.
-   * @param  {Object} e The event.
+   * Takes a name and value and updates state accordingly.
+   * @param  {string} name  The state property to be updated.
+   * @param  {any}    value The new value
    */
-  updateState = (e) => {
-    const { currentTarget: target } = e;
-    this.setState({ [target.name] : target.value });
+  updateState = (name, value) => {
+    this.setState({ [name] : value });
   }
 
   /**
    * Sets a timeout in order to make the process look 'smoother',
    * and then takes a string that is a message to the user.
    * @param  {string} userInfo Depending on when the functions is runned.
-   * @return {[type]}          [description]
    */
   onError = (userInfo) => {
     setTimeout(() => {
@@ -71,6 +70,7 @@ class App extends Component {
         if (!response.error) {
           this.setState({ response, fetchCompleted: true });
           setTimeout(() => {
+            console.log(response);
             this.setState({ fetchPending: false });
           }, 1500);
         } else {
