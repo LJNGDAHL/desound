@@ -10,8 +10,9 @@
   color: var(--cotton);
   display: flex;
   flex-direction: column;
+  justify-content: center;
   height: 200px;
-  padding-top: 2rem;
+  padding-top: 1.5rem;
   position: fixed;
   right: 0;
   top: -200px;
@@ -23,8 +24,6 @@
 @media screen and (min-width: 600px) {
   .navigation {
     height: 190px;
-    justify-content: center;
-    padding: 0;
     top: -190px;
   }
 }
@@ -35,15 +34,16 @@
 
 .navigation__headline {
   color: var(--cotton);
-  font-size: 1.7rem;
-  margin: 0.5rem;
+  font-size: 1.3rem;
+  left: 1.3rem;
+  position: absolute;
+  top: 1.25rem;
 }
 
 @media screen and (min-width: 600px) {
   .navigation__headline {
-    left: 1.3rem;
-    position: absolute;
-    top: 1.5rem;
+    font-size: 1.8rem;
+    top: 0.3rem;
   }
 }
 
@@ -119,9 +119,9 @@
   color: inherit;
   text-decoration: none;
   text-transform: uppercase;
-  line-height: 1.4;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   transition: color 450ms ease;
+  margin-bottom: 0.7em;
 }
 
 .navigation__link:hover {
@@ -136,6 +136,6 @@
 
 @media screen and (min-width: 600px) {
   .navigation__link {
-    font-size: 1.3rem;
+    font-size: 1.6rem;
   }
 }
