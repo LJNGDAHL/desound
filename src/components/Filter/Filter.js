@@ -1,8 +1,11 @@
 import React from 'react';
 import './Filter.css';
-import Range from '../Range/Range';
+import createRange from '../Range/Range';
 import Select from '../Select/Select';
 import { extractEvent } from '../../utils';
+
+// Creates the Range component with a new timeout.
+const Range = createRange();
 
 const Filter = ({ fetchData, limit, method, updateState }) => {
 

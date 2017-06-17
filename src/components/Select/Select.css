@@ -35,6 +35,10 @@ select::-ms-expand {
   display: none;
 }
 
+option {
+  text-align: left;
+}
+
 /* Arrow */
 .select::after {
   content: '\25BC';

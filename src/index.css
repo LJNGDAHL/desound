@@ -40,7 +40,7 @@ body {
   width: 90vw;
 }
 /*------------------------------------------------------------------------------
-  GENERAL TYPOGRAPHY
+  GENERAL TYPOGRAPHY AND RESETS
 ------------------------------------------------------------------------------*/
 h1 {
   font-weight: 700;
@@ -65,6 +65,18 @@ select {
   font: inherit;
   font-weight: 600;
   outline: none;
+}
+
+/* Removes dotted outline when focusing on select in Firefox */
+select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 var(--white);
+}
+
+button,
+button:focus,
+button:hover,
+input {
   text-align: center;
 }
 

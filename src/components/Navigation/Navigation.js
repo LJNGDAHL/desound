@@ -10,8 +10,11 @@ class Navigation extends Component {
     };
   }
 
+  /**
+   * Inverts the state on open when menu is toggled.
+   */
   toggleMenu = () => {
-    this.setState({open: !this.state.open});
+    this.setState({ open: !this.state.open });
   }
 
   render() {

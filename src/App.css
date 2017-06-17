@@ -1,6 +1,6 @@
 .app {
   box-sizing: border-box;
-  margin: 0 auto;
+  margin: 0 auto 2rem;
   max-width: 900px;
   padding: 1rem 2rem 10rem;
   position: relative;
@@ -10,7 +10,8 @@
 .app__content {
   box-sizing: border-box;
   left: 0;
-  margin: 0 auto 2rem;
+  margin: 0 auto;
+  padding-bottom: 3rem;
   position: absolute;
   top: 0;
   width: 100%;

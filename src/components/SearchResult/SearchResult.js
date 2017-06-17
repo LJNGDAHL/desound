@@ -16,12 +16,18 @@ const SearchResult = ({ fetchData, limit, method, response, updateState }) => {
   let typeOfSearch;
   let cards = '';
 
-  if (method === 'getsimilar') {
+  switch (method) {
+  case 'getsimilar':
     typeOfSearch = response.similarartists.artist;
-  } else if (method === 'gettoptracks') {
+    break;
+  case 'gettoptracks':
     typeOfSearch = response.toptracks.track;
-  } else if (method === 'gettopalbums') {
+    break;
+  case 'gettopalbums':
     typeOfSearch = response.topalbums.album;
+    break;
+  default:
+    typeOfSearch = undefined;
   }
 
   if (typeOfSearch) {

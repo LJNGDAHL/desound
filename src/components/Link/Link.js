@@ -1,9 +1,9 @@
 import React from 'react';
 import './Link.css';
 
-const Link = ({ url, children }) => {
+const Link = ({ url, children, cssClass='link' }) => {
   return (
-    <a href={ url } className="link" >{ children }</a>
+    <a href={ url } className={ cssClass } >{ children }</a>
   );
 };
 

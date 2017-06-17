@@ -12,7 +12,7 @@ const Select = ({ selected, onChange }) => {
     case 2:
       return onChange('gettopalbums');
     default:
-      console.log('That is not an available option.');
+      return;
     }
   };
 

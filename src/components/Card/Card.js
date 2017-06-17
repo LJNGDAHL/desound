@@ -7,7 +7,7 @@ const Card = ({ searchResult, method, onClick }) => {
   const defaultImageUrl = 'http://bit.ly/2s5LBWL';
   let searchSpecificData = {};
 
-  // Render different content based on search method.
+  // Renders different content based on which search method user has chosen.
   switch (method) {
   case 'getsimilar':
     searchSpecificData = {
@@ -29,7 +29,7 @@ const Card = ({ searchResult, method, onClick }) => {
         <div className="card__content">
           <h3 className="card__artist">{ searchResult.name }</h3>
           <p className="listeners">{ searchResult.listeners } listeners</p>
-          <Link url={youtubeLink}>Explore on Youtube</Link>
+          <Link url={ youtubeLink }>Explore on Youtube</Link>
         </div>
     };
     break;

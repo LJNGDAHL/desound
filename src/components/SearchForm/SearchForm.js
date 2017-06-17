@@ -5,6 +5,10 @@ import { extractEvent } from '../../utils';
 
 const SearchForm = ({ handleChangeRefined, value, onSubmit }) => {
 
+  /**
+   * Prevents default and handle submit when user wants to perform a search.
+   * @param  {object} e The current event.
+   */
   const onsubmit = e => {
     e.preventDefault();
     onSubmit();

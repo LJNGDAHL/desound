@@ -7,7 +7,7 @@ const Header = () => {
     <header className="header">
       <Navigation />
       <h1 className="header__headline">Desound.</h1>
-      <p className="header__description">A place for discovering similar artists and learn more about the bands you love.</p>
+      <p className="header__description">A place for discovering similar artists and learn more about the bands that you love.</p>
     </header>
   );
 };
