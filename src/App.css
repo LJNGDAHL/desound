@@ -2,7 +2,7 @@
   box-sizing: border-box;
   margin: 0 auto 2rem;
   max-width: 900px;
-  padding: 1rem 2rem 10rem;
+  padding: 1rem 2rem 0;
   position: relative;
   width: 90vw;
 }
@@ -10,8 +10,7 @@
 .app__content {
   box-sizing: border-box;
   left: 0;
-  margin: 0 auto;
-  padding-bottom: 3rem;
+  margin: 0 auto 3rem;
   position: absolute;
   top: 0;
   width: 100%;
