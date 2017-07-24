@@ -8,10 +8,9 @@ const enhancers = compose(
   f => f
 );
 
-// Right now, only for testing purposes
 const initialState = {
-  test_reducer: {
-    klick: 100
+  menu: {
+    open: false
   }
 };
 

@@ -1,5 +1,5 @@
-export function actionTest() {
+export function toggleMenu() {
   return {
-    type: 'TEST_INCREMENTING'
+    type: 'TOGGLE_MENU'
   };
 }

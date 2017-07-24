@@ -109,13 +109,7 @@ class App extends Component {
     return (
       <Router history={ this.props.history }>
         <div className="wrapper">
-          <Header />
-
-          { /* TODO: Remove button once Redux is upp and running */}
-          <button className="button" onClick={ () => this.props.actionTest() }>
-            Click me!
-          </button>
-
+          <Header/>
           <Route render={({ location }) => (
             <CSSTransitionGroup component="main" className="app" transitionName="fade" transitionEnterTimeout={ 0 }  transitionLeaveTimeout={ 0 }>
               <Switch key={location.key} location={location}>
