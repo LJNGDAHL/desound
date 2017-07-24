@@ -3,6 +3,8 @@ import { CSSTransitionGroup } from 'react-transition-group';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header/Header';
+
+// Views
 import Home from './views/Home';
 import About from './views/About';
 import Lastfm from './views/Lastfm';
@@ -90,6 +92,7 @@ class App extends Component {
       });
   }
 
+
   render() {
     // Props needed in 'Home' Component
     const homeProps = {
@@ -104,18 +107,25 @@ class App extends Component {
     };
 
     return (
-      <Router>
+      <Router history={ this.props.history }>
         <div className="wrapper">
           <Header />
+
+          { /* TODO: Remove button once Redux is upp and running */}
+          <button className="button" onClick={ () => this.props.actionTest() }>
+            Click me!
+          </button>
+
           <Route render={({ location }) => (
-          <CSSTransitionGroup component="main" className="app" transitionName="fade" transitionEnterTimeout={ 0 }  transitionLeaveTimeout={ 0 }>
-            <Switch key={location.key} location={location}>
-              <Route exact path='/' render={ () => <Home { ...homeProps } /> } />
-              <Route path="/about" component={ About }/>
-              <Route path="/lastfm" component={ Lastfm } />
-            </Switch>
-          </CSSTransitionGroup>
-        )}/>
+            <CSSTransitionGroup component="main" className="app" transitionName="fade" transitionEnterTimeout={ 0 }  transitionLeaveTimeout={ 0 }>
+              <Switch key={location.key} location={location}>
+                <Route exact path='/' render={ () => <Home { ...homeProps } /> } />
+                <Route path="/about" component={ About }/>
+                <Route path="/lastfm" component={ Lastfm } />
+              </Switch>
+            </CSSTransitionGroup>
+          )}/>
+
         </div>
       </Router>
     );
