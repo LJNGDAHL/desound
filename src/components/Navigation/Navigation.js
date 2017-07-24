@@ -8,10 +8,11 @@ class Navigation extends Component {
   render() {
     const iconStyles = this.props.menu.open ? 'open nav-icon' : 'nav-icon';
     const navStyles = this.props.menu.open ? 'navigation navigation--visible' : 'navigation';
+    const handleMenuState = () => this.props.dispatch(toggleMenu());
 
     return(
       <div>
-        <div className={ iconStyles } onClick={ () => this.props.dispatch(toggleMenu()) }>
+        <div className={ iconStyles } onClick={ handleMenuState }>
           <span></span>
           <span></span>
           <span></span>
@@ -19,9 +20,9 @@ class Navigation extends Component {
         </div>
         <nav className={ navStyles }>
           <h2 className="navigation__headline">Desound.</h2>
-          <NavLink className="navigation__link" exact to="/" onClick={ () => this.props.dispatch(toggleMenu()) }>Discover</NavLink>
-          <NavLink className="navigation__link" to="/about" onClick={ () => this.props.dispatch(toggleMenu()) }>About Desound</NavLink>
-          <NavLink className="navigation__link" to="/lastfm" onClick={ () => this.props.dispatch(toggleMenu()) }>Why Last.fm?</NavLink>
+          <NavLink className="navigation__link" exact to="/" onClick={ handleMenuState }>Discover</NavLink>
+          <NavLink className="navigation__link" to="/about" onClick={ handleMenuState }>About Desound</NavLink>
+          <NavLink className="navigation__link" to="/lastfm" onClick={ handleMenuState }>Why Last.fm?</NavLink>
         </nav>
       </div>
     );
