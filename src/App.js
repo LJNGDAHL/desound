@@ -4,6 +4,10 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header/Header';
 
+// Redux specific stuff
+import { onErrorWithRedux } from './actions/actionCreators';
+import { connect } from 'react-redux';
+
 // Views
 import Home from './views/Home';
 import About from './views/About';
@@ -84,11 +88,22 @@ class App extends Component {
             this.setState({ fetchPending: false, limit: data.length });
           }, 1500);
         } else {
+          this.props.dispatch(onErrorWithRedux('Are you sure that band exists? It all seems to be a bit too obscure for me. Try again with another band, or come back later!'));
+          this.setState({
+            fetchPending: this.props.error.fetchPending,
+            fetchInitialized: this.props.error.fetchInitialized
+          });
           this.onError('Are you sure that band exists? It all seems to be a bit too obscure for me. Try again with another band, or come back later!');
         }
       })
       .catch(() => {
-        this.onError('I have no idea what went wrong. Please try again later.');
+        // TODO: Replace onError with on ErrorWithRedux, as soon as it is working.
+        this.props.dispatch(onErrorWithRedux('I have no idea what went wrong. Please try again later.'));
+        this.setState({
+          fetchPending: this.props.response.fetchPending,
+          fetchInitialized: this.props.response.fetchInitialized
+        });
+        this.onError('I have no idea what went wrong. Please try again later.', );
       });
   }
 
@@ -112,7 +127,7 @@ class App extends Component {
           <Header/>
           <Route render={({ location }) => (
             <CSSTransitionGroup component="main" className="app" transitionName="fade" transitionEnterTimeout={ 0 }  transitionLeaveTimeout={ 0 }>
-              <Switch key={location.key} location={location}>
+              <Switch key={ location.key } location={ location }>
                 <Route exact path='/' render={ () => <Home { ...homeProps } /> } />
                 <Route path="/about" component={ About }/>
                 <Route path="/lastfm" component={ Lastfm } />
@@ -126,4 +141,10 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    response: state.response
+  };
+}
+
+export default connect(mapStateToProps)(App);
