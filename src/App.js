@@ -5,7 +5,7 @@ import './App.css';
 import Header from './components/Header/Header';
 
 // Redux specific stuff
-import { onErrorWithRedux } from './actions/actionCreators';
+import { handleError, fetchStatus } from './actions/actionCreators';
 import { connect } from 'react-redux';
 
 // Views
@@ -23,9 +23,6 @@ class App extends Component {
       artist: '',
       baseURL: `${API_PREFIX}http://ws.audioscrobbler.com/2.0/?format=json`,
       country: '',
-      fetchCompleted: false,
-      fetchPending: false,
-      fetchInitialized: false,
       genre: '',
       limit: 12,
       method: 'getsimilar', // for testing purposes
@@ -43,25 +40,6 @@ class App extends Component {
   }
 
   /**
-   * Sets a timeout in order to make the process look 'smoother',
-   * and then takes a string that is a message to the user.
-   * @param  {string} userInfo Depending on when the functions is runned.
-   */
-  onError = (userInfo) => {
-    setTimeout(() => {
-      this.setState({
-        fetchPending: false,
-        fetchInitialized: false,
-        response: {
-          type: 'error',
-          title: 'Oops, something went wrong.',
-          text: userInfo
-        }
-      });
-    }, 1500);
-  }
-
-  /**
    * Retrieves data from last.fm based on the band user decided to search on.
    */
   fetchData = (data = {}) => {
@@ -73,7 +51,9 @@ class App extends Component {
       gettopalbums: 'topalbums.album'
     };
 
-    this.setState({ fetchInitialized: true, fetchPending: true, ...data });
+    this.setState({ ...data });
+    this.props.dispatch(handleError(false)); // Reset error
+    this.props.dispatch(fetchStatus(true, true, false));
 
     fetch(query)
       .then(response => response.json())
@@ -83,38 +63,28 @@ class App extends Component {
         // Get data from response using methodMap
         const data = path.split('.').reduce((part, key) => part[key], response);
         if (!response.error && data.length !== 0) {
-          this.setState({ response, fetchCompleted: true });
+          this.setState({ response });
+          this.props.dispatch(fetchStatus(false, false, true));
           setTimeout(() => {
-            this.setState({ fetchPending: false, limit: data.length });
+            this.props.dispatch(fetchStatus(false, false, true));
+            this.setState({ limit: data.length });
           }, 1500);
         } else {
-          this.props.dispatch(onErrorWithRedux('Are you sure that band exists? It all seems to be a bit too obscure for me. Try again with another band, or come back later!'));
-          this.setState({
-            fetchPending: this.props.error.fetchPending,
-            fetchInitialized: this.props.error.fetchInitialized
-          });
-          this.onError('Are you sure that band exists? It all seems to be a bit too obscure for me. Try again with another band, or come back later!');
+          this.props.dispatch(handleError(true, 'Are you sure that band exists? It all seems to be a bit too obscure for me. Try again with another band, or come back later!'));
+          this.props.dispatch(fetchStatus(false, false, false));
         }
       })
       .catch(() => {
-        // TODO: Replace onError with on ErrorWithRedux, as soon as it is working.
-        this.props.dispatch(onErrorWithRedux('I have no idea what went wrong. Please try again later.'));
-        this.setState({
-          fetchPending: this.props.response.fetchPending,
-          fetchInitialized: this.props.response.fetchInitialized
-        });
-        this.onError('I have no idea what went wrong. Please try again later.', );
+        this.props.dispatch(handleError(true, 'I have no idea what went wrong. Please try again later.'));
+        this.props.dispatch(fetchStatus(false, false, false));
       });
   }
-
 
   render() {
     // Props needed in 'Home' Component
     const homeProps = {
       artist: this.state.artist,
       fetchData: this.fetchData,
-      fetchInitialized: this.state.fetchInitialized,
-      fetchPending: this.state.fetchPending,
       limit: this.state.limit,
       method: this.state.method,
       response: this.state.response,
@@ -134,7 +104,6 @@ class App extends Component {
               </Switch>
             </CSSTransitionGroup>
           )}/>
-
         </div>
       </Router>
     );
@@ -143,7 +112,8 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    response: state.response
+    onError: state.onError,
+    fetchStatus: state.fetchStatus
   };
 }
 

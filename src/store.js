@@ -13,12 +13,16 @@ const initialState = {
   menu: {
     open: false
   },
-  // Earlier, I've been using response for storing both error messages and the
-  // response from Last.fm. Is this still a good idea?
-  response: {
-    fetchCompleted: undefined,
-    fetchInitialized: undefined,
-    fetchPending: undefined,
+
+  // Keeps track of response status from Last.fm
+  fetchStatus: {
+    initialized: false,
+    pending: false,
+    completed: false
+  },
+
+  onError: {
+    error: false,
     message: null
   }
 };

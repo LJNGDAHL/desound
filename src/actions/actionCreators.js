@@ -1,3 +1,4 @@
+// Toggles main menu
 export function toggleMenu() {
   return {
     type: 'TOGGLE_MENU'
@@ -18,12 +19,24 @@ export const toggleAsync = () => (dispatch) => {
  * and then takes a string that is a message to the user.
  * @param  {string} message The message to be displayed to the user
  */
-export const onErrorWithRedux = (message) => (dispatch) => {
+export const handleError = (error, message) => (dispatch) => {
   setTimeout(() => {
     console.log('Action is working like it should!');
     dispatch({
-      type: 'ON_ERROR_WITH_REDUX',
+      type: 'ON_ERROR',
+      error,
       message
     });
   }, 1000);
 };
+
+// Keeps track of response status from Last.fm
+export function fetchStatus(initialized, pending, completed) {
+  return {
+    type: 'FETCH_STATUS',
+    initialized,
+    pending,
+    completed
+  };
+}
+

@@ -1,11 +1,12 @@
 import { combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
 import menu from './menu';
-import response from './response';
+import { onError, fetchStatus } from './responses';
 
 const rootReducer = combineReducers({
+  onError,
+  fetchStatus,
   menu,
-  response,
   routing
 });
 
