@@ -21,7 +21,6 @@ export const toggleAsync = () => (dispatch) => {
  */
 export const handleError = (error, message) => (dispatch) => {
   setTimeout(() => {
-    console.log('Action is working like it should!');
     dispatch({
       type: 'ON_ERROR',
       error,
@@ -30,7 +29,12 @@ export const handleError = (error, message) => (dispatch) => {
   }, 1000);
 };
 
-// Keeps track of response status from Last.fm
+/**
+ * Keeps track of response status from Last.fm when fetching data.
+ * @param {bool} initialized  If fetch is initialized.
+ * @param {bool} pending      If fetch is pending.
+ * @param {bool} completed    If fetch is completed.
+ */
 export function fetchStatus(initialized, pending, completed) {
   return {
     type: 'FETCH_STATUS',
@@ -40,3 +44,17 @@ export function fetchStatus(initialized, pending, completed) {
   };
 }
 
+/**
+ * Gathers information about the search to be performed at Last.fm.
+ * @param {string} artist  The name of the artist
+ * @param {number} limit   The number of artists to be displayed
+ * @param {string} method  The kind of search to be performed (i.e. 'similar artists')
+ */
+export function askLastFm(artist, limit, method) {
+  return {
+    type: 'ASK_LASTFM',
+    artist,
+    limit,
+    method
+  };
+}

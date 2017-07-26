@@ -12,6 +12,7 @@ export const onError = (state = {}, action) => {
   }
 };
 
+// Used for keeping track of what state the fetching process is in.
 export const fetchStatus = (state = {}, action) => {
   switch(action.type) {
   case 'FETCH_STATUS': {
@@ -27,3 +28,17 @@ export const fetchStatus = (state = {}, action) => {
   }
 };
 
+export const askLastFm = (state = {}, action) => {
+  switch(action.type) {
+  case 'ASK_LASTFM': {
+    return {
+      ...state,
+      artist: action.artist,
+      limit: action.limit,
+      method: action.method
+    };
+  }
+  default:
+    return state;
+  }
+};

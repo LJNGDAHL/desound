@@ -16,7 +16,6 @@ class Home extends Component {
 
     let errorMessage;
 
-    // FIXME: Make sure to reset this after each search
     if (onError.message) {
       errorMessage = (
         <div className="app__content--text fade-in">
@@ -39,7 +38,6 @@ class Home extends Component {
   }
 }
 
-// This component needs acces to error messages from redux.
 function mapStateToProps(state) {
   return {
     onError: state.onError,

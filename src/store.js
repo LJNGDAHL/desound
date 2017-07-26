@@ -2,6 +2,9 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers/index';
 
+// Used when querying Last.fm
+const API_PREFIX = process.env.REACT_APP_API_PREFIX;
+
 // Enable Redux DevTools
 const enhancers = compose(
   window.devToolsExtension ?
@@ -21,6 +24,13 @@ const initialState = {
     completed: false
   },
 
+  askLastFm: {
+    artist: '',
+    baseURL: `${API_PREFIX}http://ws.audioscrobbler.com/2.0/?format=json`,
+    limit: 12,
+    method: 'getsimilar'
+  },
+
   onError: {
     error: false,
     message: null
@@ -28,13 +38,14 @@ const initialState = {
 };
 
 const store = createStore(
-  rootReducer, // All of the reducers
-  initialState, // The initial state of the app
-  // All the other stuff that is needed
+  rootReducer,
+  initialState,
   compose(
     applyMiddleware(thunk),
     enhancers
   )
 );
+
+console.log(store.getState());
 
 export default store;

@@ -113,7 +113,8 @@ class App extends Component {
 function mapStateToProps(state) {
   return {
     onError: state.onError,
-    fetchStatus: state.fetchStatus
+    fetchStatus: state.fetchStatus,
+    askLastFm: state.askLastFm
   };
 }
 
